@@ -1,3 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NuroVed FINAL Architecture</title>
+
+<style>
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #F6FAF8;
+  padding: 20px;
+}
+
+h1 { color: #3FA37F; }
+
+button {
+  margin: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #E6F4EE;
+}
+
+.active {
+  background: #3FA37F;
+  color: white;
+}
+
+.tree ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.tree li {
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.folder::before { content: "📁 "; }
+.file::before { content: "📄 "; }
+
+.hidden { display: none; }
+
+.box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌿 NuroVed Patient App — FINAL STRUCTURE (NO MISSING PART)</h1>
+
+<button onclick="setMode('all')" class="active">Full</button>
+<button onclick="setMode('frontend')">Frontend</button>
+<button onclick="setMode('backend')">Backend</button>
+
+<div class="tree box">
+
+<ul>
+
+<li class="folder all">NUROVED
+<ul>
+
+<li class="folder all">android</li>
+<li class="folder all">ios</li>
+<li class="folder all">web</li>
+<li class="folder all">linux</li>
+<li class="folder all">macos</li>
+<li class="folder all">windows</li>
+
+<li class="folder all">assets
+<ul>
+<li class="folder all">images</li>
+<li class="folder all">icons</li>
+<li class="folder all">fonts</li>
+</ul>
+</li>
+
+<!-- SUPABASE -->
+<li class="folder backend">supabase
+<ul>
+<li class="folder backend">functions
+<ul>
+<li class="file backend">analyze_report.ts</li>
+<li class="file backend">generate_diet.ts</li>
+<li class="file backend">scan_food.ts</li>
+<li class="file backend">add_visit.ts</li>
+<li class="file backend">grant_access.ts</li>
+<li class="file backend">alert_engine.ts</li>
+</ul>
+</li>
+<li class="folder backend">migrations</li>
+</ul>
+</li>
+
+<!-- LIB -->
+<li class="folder all">lib
+<ul>
+
+<li class="file all">main.dart</li>
+
+<!-- APP -->
+<li class="folder frontend">app
+<ul>
+<li class="file frontend">app.dart</li>
+<li class="file frontend">app_router.dart</li>
+<li class="file frontend">app_binding.dart</li>
+</ul>
+</li>
+
+<!-- CORE -->
+<li class="folder all">core
+<ul>
+
+<li class="folder all">constants
+<ul>
+<li class="file all">app_strings.dart</li>
+<li class="file all">app_assets.dart</li>
+</ul>
+</li>
+
+<li class="folder frontend">theme
+<ul>
+<li class="file frontend">app_colors.dart</li>
+<li class="file frontend">app_text_styles.dart</li>
+<li class="file frontend">app_theme.dart</li>
+</ul>
+</li>
+
+<li class="folder all">utils
+<ul>
+<li class="file all">helpers.dart</li>
+<li class="file all">validators.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">services
+<ul>
+<li class="file backend">auth_service.dart</li>
+<li class="file backend">supabase_service.dart</li>
+<li class="file backend">notification_service.dart</li>
+<li class="file backend">alert_engine_service.dart</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+<!-- SHARED -->
+<li class="folder frontend">shared
+<ul>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">app_card.dart</li>
+<li class="file frontend">primary_button.dart</li>
+<li class="file frontend">secondary_button.dart</li>
+<li class="file frontend">custom_text_field.dart</li>
+<li class="file frontend">section_header.dart</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<!-- API LAYER -->
+<li class="folder backend">api_layer
+<ul>
+
+<li class="folder backend">client
+<ul>
+<li class="file backend">api_base.dart</li>
+<li class="file backend">api_client.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">endpoints
+<ul>
+<li class="file backend">auth_endpoints.dart</li>
+<li class="file backend">patient_endpoints.dart</li>
+<li class="file backend">report_endpoints.dart</li>
+<li class="file backend">timeline_endpoints.dart</li>
+<li class="file backend">diet_endpoints.dart</li>
+<li class="file backend">permission_endpoints.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">middleware
+<ul>
+<li class="file backend">auth_interceptor.dart</li>
+<li class="file backend">permission_interceptor.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">services
+<ul>
+<li class="file backend">auth_api_service.dart</li>
+<li class="file backend">patient_api_service.dart</li>
+<li class="file backend">report_api_service.dart</li>
+<li class="file backend">timeline_api_service.dart</li>
+<li class="file backend">visit_api_service.dart</li>
+<li class="file backend">diet_api_service.dart</li>
+<li class="file backend">permission_api_service.dart</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+<!-- DATA -->
+<li class="folder backend">data
+<ul>
+
+<li class="folder backend">models
+<ul>
+<li class="file backend">user_model.dart</li>
+<li class="file backend">patient_model.dart</li>
+<li class="file backend">family_member_model.dart</li>
+<li class="file backend">report_model.dart</li>
+<li class="file backend">visit_model.dart</li>
+<li class="file backend">medication_model.dart</li>
+<li class="file backend">diet_model.dart</li>
+<li class="file backend">food_log_model.dart</li>
+<li class="file backend">routine_model.dart</li>
+<li class="file backend">alert_model.dart</li>
+<li class="file backend">notification_model.dart</li>
+<li class="file backend">permission_model.dart</li>
+<li class="file backend">subscription_model.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">repositories
+<ul>
+<li class="file backend">auth_repository.dart</li>
+<li class="file backend">patient_repository.dart</li>
+<li class="file backend">report_repository.dart</li>
+<li class="file backend">timeline_repository.dart</li>
+<li class="file backend">visit_repository.dart</li>
+<li class="file backend">diet_repository.dart</li>
+<li class="file backend">alert_repository.dart</li>
+<li class="file backend">permission_repository.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">sources
+<ul>
+<li class="folder backend">remote
+<ul>
+<li class="file backend">auth_api.dart</li>
+<li class="file backend">report_api.dart</li>
+<li class="file backend">timeline_api.dart</li>
+<li class="file backend">visit_api.dart</li>
+<li class="file backend">diet_api.dart</li>
+<li class="file backend">permission_api.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">local
+<ul>
+<li class="file backend">local_storage.dart</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+<!-- DOMAIN -->
+<li class="folder backend">domain
+<ul>
+
+<li class="folder backend">entities
+<ul>
+<li class="file backend">user.dart</li>
+<li class="file backend">report.dart</li>
+<li class="file backend">visit.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">usecases
+<ul>
+
+<li class="folder backend">auth
+<ul>
+<li class="file backend">login.dart</li>
+<li class="file backend">signup.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">reports
+<ul>
+<li class="file backend">upload_report.dart</li>
+<li class="file backend">analyze_report.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">timeline
+<ul>
+<li class="file backend">get_timeline.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">visits
+<ul>
+<li class="file backend">add_visit.dart</li>
+<li class="file backend">attach_report.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">diet
+<ul>
+<li class="file backend">generate_diet_plan.dart</li>
+<li class="file backend">scan_food.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">permissions
+<ul>
+<li class="file backend">grant_access.dart</li>
+<li class="file backend">revoke_access.dart</li>
+</ul>
+</li>
+
+<li class="folder backend">alerts
+<ul>
+<li class="file backend">generate_alerts.dart</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+<!-- FEATURES -->
 <li class="folder frontend">features
 <ul>
 
@@ -222,3 +563,68 @@
 
 </ul>
 </li>
+
+</ul>
+</li>
+
+<li class="file all">pubspec.yaml</li>
+
+</ul>
+</li>
+
+</ul>
+
+</div>
+
+<!-- EXPLANATION -->
+<div class="box" style="margin-top:30px">
+
+<h2>🧠 FINAL DEV EXPLANATION</h2>
+
+<p><b>Architecture:</b> Clean Architecture (Scalable)</p>
+
+<p><b>Flow:</b><br>
+UI → Controller → Usecase → Repository → API Layer → Supabase → Response</p>
+
+<p><b>Frontend:</b> features/, shared/, theme</p>
+
+<p><b>Backend:</b> api_layer/, data/, domain/, supabase/</p>
+
+<p><b>Why this is perfect:</b><br>
+- No tight coupling<br>
+- Plug hospital dashboard easily<br>
+- Secure access system possible<br>
+- AI layer scalable<br>
+- Production ready</p>
+
+</div>
+
+<script>
+document.querySelectorAll(".folder").forEach(folder=>{
+  folder.addEventListener("click", function(e){
+    e.stopPropagation();
+    let child = this.querySelector("ul");
+    if(child) child.classList.toggle("hidden");
+  });
+});
+
+function setMode(mode){
+  document.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+
+  document.querySelectorAll(".frontend, .backend, .all").forEach(el=>{
+    el.style.display = "block";
+  });
+
+  if(mode === "frontend"){
+    document.querySelectorAll(".backend").forEach(el=>el.style.display="none");
+  }
+
+  if(mode === "backend"){
+    document.querySelectorAll(".frontend").forEach(el=>el.style.display="none");
+  }
+}
+</script>
+
+</body>
+</html>
