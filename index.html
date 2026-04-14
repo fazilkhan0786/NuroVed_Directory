@@ -579,26 +579,309 @@ button {
 <!-- EXPLANATION -->
 <div class="box" style="margin-top:30px">
 
-<h2>🧠 FINAL DEV EXPLANATION</h2>
+<h2>🧠 NuroVed System Explanation (Complete Developer Guide)</h2>
 
-<p><b>Architecture:</b> Clean Architecture (Scalable)</p>
+<p><b>Architecture:</b> Clean Architecture (Highly Scalable, Modular, and Secure)</p>
 
-<p><b>Flow:</b><br>
-UI → Controller → Usecase → Repository → API Layer → Supabase → Response</p>
+<p>
+This project follows a layered architecture where each layer has a strict responsibility.
+This ensures scalability, security, and flexibility when integrating hospital dashboards,
+AI engines, and external systems like ABDM.
+</p>
 
-<p><b>Frontend:</b> features/, shared/, theme</p>
+<hr>
 
-<p><b>Backend:</b> api_layer/, data/, domain/, supabase/</p>
+<h3>🔄 COMPLETE SYSTEM FLOW (END-TO-END)</h3>
 
-<p><b>Why this is perfect:</b><br>
-- No tight coupling<br>
-- Plug hospital dashboard easily<br>
-- Secure access system possible<br>
-- AI layer scalable<br>
-- Production ready</p>
+<p>
+User Action (UI) → Controller → Usecase (Domain Logic) → Repository → API Layer → Supabase Backend → Response → UI Update
+</p>
+
+<p>
+<b>Explanation:</b><br>
+- User interacts with UI (Flutter screen)<br>
+- Controller handles UI state and calls usecase<br>
+- Usecase contains business logic (what should happen)<br>
+- Repository decides where data comes from (API/local)<br>
+- API Layer securely communicates with backend<br>
+- Supabase processes logic / stores data<br>
+- Response comes back → UI updates<br>
+</p>
+
+<hr>
+
+<h3>📁 ROOT LEVEL FOLDERS</h3>
+
+<p><b>android / ios / web / macos / windows / linux:</b><br>
+Flutter platform-specific folders. <br>
+👉 Used by: Flutter engine (DO NOT MODIFY for business logic)</p>
+
+<p><b>assets/:</b><br>
+Stores static resources (images, icons, fonts).<br>
+👉 Used by: Frontend Developer</p>
+
+<hr>
+
+<h3>🧠 SUPABASE (BACKEND CORE)</h3>
+
+<p><b>supabase/functions:</b><br>
+Server-side logic (acts like backend APIs)</p>
+
+<ul>
+<li>analyze_report.ts → AI report parsing</li>
+<li>generate_diet.ts → AI diet plan generation</li>
+<li>scan_food.ts → food barcode logic</li>
+<li>add_visit.ts → create timeline entries</li>
+<li>grant_access.ts → permission system</li>
+<li>alert_engine.ts → health alerts engine</li>
+</ul>
+
+<p>
+👉 Used by: Backend Developer<br>
+👉 Purpose: Executes critical logic securely (NOT in app)
+</p>
+
+<p><b>supabase/migrations:</b><br>
+Database schema management (tables, relations)</p>
+
+<hr>
+
+<h3>📁 LIB (MAIN APPLICATION CODE)</h3>
+
+<p><b>main.dart:</b><br>
+App entry point<br>
+👉 Initializes app, theme, routing</p>
+
+<hr>
+
+<h3>⚙️ APP LAYER (APPLICATION CONTROL)</h3>
+
+<p><b>lib/app/</b></p>
+
+<ul>
+<li>app.dart → Root widget</li>
+<li>app_router.dart → Navigation system</li>
+<li>app_binding.dart → Dependency injection</li>
+</ul>
+
+<p>
+👉 Used by: Frontend + Architecture<br>
+👉 Purpose: Controls app lifecycle, navigation, dependency wiring
+</p>
+
+<hr>
+
+<h3>🧩 CORE (GLOBAL SYSTEM)</h3>
+
+<p><b>lib/core/constants:</b><br>
+App-wide constants (strings, assets)</p>
+
+<p><b>lib/core/theme:</b><br>
+Colors, typography, UI system<br>
+👉 Used by: Frontend</p>
+
+<p><b>lib/core/utils:</b><br>
+Helper functions, validators<br>
+👉 Used by: Both</p>
+
+<p><b>lib/core/services:</b><br>
+Low-level services:</p>
+
+<ul>
+<li>auth_service → authentication</li>
+<li>supabase_service → DB connection</li>
+<li>notification_service → push notifications</li>
+<li>alert_engine_service → background health logic</li>
+</ul>
+
+<p>
+👉 Used by: Backend Logic Layer<br>
+👉 Purpose: Direct interaction with infrastructure
+</p>
+
+<hr>
+
+<h3>🧱 SHARED (REUSABLE UI COMPONENTS)</h3>
+
+<p><b>lib/shared/widgets:</b></p>
+
+<ul>
+<li>app_card → UI container</li>
+<li>primary_button → main CTA</li>
+<li>secondary_button → secondary actions</li>
+<li>custom_text_field → input fields</li>
+<li>section_header → reusable headers</li>
+</ul>
+
+<p>
+👉 Used by: Frontend Developer<br>
+👉 Purpose: Avoid UI duplication, maintain consistency
+</p>
+
+<hr>
+
+<h3>🌐 API LAYER (SECURITY + COMMUNICATION)</h3>
+
+<p><b>lib/api_layer/</b></p>
+
+<p><b>client:</b><br>
+Handles base API configuration (headers, tokens)</p>
+
+<p><b>endpoints:</b><br>
+Defines all API routes</p>
+
+<p><b>middleware:</b><br>
+Security layer:</p>
+<ul>
+<li>auth_interceptor → attach tokens</li>
+<li>permission_interceptor → validate access</li>
+</ul>
+
+<p><b>services:</b><br>
+Actual API calls (feature-wise)</p>
+
+<p>
+👉 Used by: Backend Developer<br>
+👉 Purpose: Protect system + control communication between app and backend
+</p>
+
+<hr>
+
+<h3>📊 DATA LAYER (DATA HANDLING)</h3>
+
+<p><b>models:</b><br>
+Convert JSON ↔ Dart objects</p>
+
+<p><b>repositories:</b><br>
+Bridge between domain and API<br>
+Decides: API vs local data</p>
+
+<p><b>sources:</b></p>
+<ul>
+<li>remote → API calls</li>
+<li>local → cache/storage</li>
+</ul>
+
+<p>
+👉 Used by: Backend Developer<br>
+👉 Purpose: Manage data flow cleanly
+</p>
+
+<hr>
+
+<h3>🧠 DOMAIN LAYER (BUSINESS LOGIC CORE)</h3>
+
+<p><b>entities:</b><br>
+Core data models independent of API</p>
+
+<p><b>usecases:</b><br>
+Each file = one action:</p>
+
+<ul>
+<li>login → user login logic</li>
+<li>upload_report → upload flow</li>
+<li>add_visit → timeline creation</li>
+<li>generate_diet_plan → AI diet logic</li>
+<li>grant_access → permission system</li>
+<li>generate_alerts → health alert engine</li>
+</ul>
+
+<p>
+👉 Used by: Backend + Architecture<br>
+👉 Purpose: Central brain of the app (NO UI, NO API)
+</p>
+
+<hr>
+
+<h3>📱 FEATURES (FRONTEND CORE)</h3>
+
+<p><b>lib/features/</b></p>
+
+<p>
+Each feature = complete module with:
+</p>
+
+<ul>
+<li>screens → UI pages</li>
+<li>controllers → state + logic</li>
+<li>widgets → reusable UI parts</li>
+</ul>
+
+<p><b>Modules:</b></p>
+
+<ul>
+<li>auth → login/signup</li>
+<li>home → dashboard</li>
+<li>vault → medical reports</li>
+<li>timeline → health history</li>
+<li>reminders → medication + routine</li>
+<li>diet → AI diet + scanner</li>
+<li>family → multi-user profiles</li>
+<li>doctor_share → permission system</li>
+<li>notifications → alerts UI</li>
+<li>profile → user data</li>
+<li>premium → subscription</li>
+</ul>
+
+<p>
+👉 Used by: Frontend Developer<br>
+👉 Purpose: User-facing experience
+</p>
+
+<hr>
+
+<h3>⚖️ FRONTEND vs BACKEND RESPONSIBILITY</h3>
+
+<p><b>Frontend Developer:</b></p>
+<ul>
+<li>features/</li>
+<li>shared/</li>
+<li>theme/</li>
+<li>app/</li>
+</ul>
+
+<p><b>Backend Developer:</b></p>
+<ul>
+<li>api_layer/</li>
+<li>data/</li>
+<li>domain/</li>
+<li>supabase/</li>
+</ul>
+
+<hr>
+
+<h3>🚀 WHY THIS ARCHITECTURE IS POWERFUL</h3>
+
+<ul>
+<li>No tight coupling between UI and backend</li>
+<li>Easy to scale (add hospital dashboard anytime)</li>
+<li>Secure permission-based access system</li>
+<li>AI layer can evolve independently</li>
+<li>Supports multi-user (family mode)</li>
+<li>Production-ready structure</li>
+</ul>
+
+<hr>
+
+<h3>🧠 FINAL UNDERSTANDING</h3>
+
+<p>
+You are NOT building an app.<br>
+You are building a <b>health operating system</b>.
+</p>
+
+<p>
+This structure ensures:
+</p>
+
+<ul>
+<li>Patient owns data</li>
+<li>Systems plug into patient</li>
+<li>AI adds intelligence layer</li>
+</ul>
 
 </div>
-
+  
 <script>
 document.querySelectorAll(".folder").forEach(folder=>{
   folder.addEventListener("click", function(e){
