@@ -1,528 +1,213 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NuroVed Project Structure</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-mono,monospace)}
-.root{padding:1rem 0 2rem;color:var(--color-text-primary)}
-.header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
-.badge{font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;white-space:nowrap}
-.badge-teal{background:#E1F5EE;color:#0F6E56}
-.badge-purple{background:#EEEDFE;color:#3C3489}
-.badge-amber{background:#FAEEDA;color:#854F0B}
-.badge-coral{background:#FAECE7;color:#993C1D}
-@media(prefers-color-scheme:dark){
-  .badge-teal{background:#085041;color:#9FE1CB}
-  .badge-purple{background:#26215C;color:#AFA9EC}
-  .badge-amber{background:#412402;color:#FAC775}
-  .badge-coral{background:#4A1B0C;color:#F0997B}
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #F7FAF9;
+    color: #1F2A2E;
+    padding: 20px;
 }
-.search-bar{display:flex;gap:8px;margin-bottom:1.25rem}
-.search-bar input{flex:1;font-size:13px}
-.tab-bar{display:flex;gap:4px;margin-bottom:1.25rem;flex-wrap:wrap}
-.tab{font-size:12px;padding:5px 12px;border-radius:4px;border:0.5px solid var(--color-border-secondary);cursor:pointer;color:var(--color-text-secondary);background:transparent;transition:all .15s}
-.tab:hover{background:var(--color-background-secondary)}
-.tab.active{background:var(--color-background-info);color:var(--color-text-info);border-color:transparent}
-.tree{font-size:12.5px;line-height:2;font-family:var(--font-mono)}
-.tree-row{display:flex;align-items:center;gap:0;cursor:pointer;border-radius:4px;padding:0 4px;transition:background .1s;user-select:none}
-.tree-row:hover{background:var(--color-background-secondary)}
-.tree-row.selected{background:var(--color-background-info)}
-.tree-row.selected .name{color:var(--color-text-info)}
-.indent{display:inline-block;width:20px;flex-shrink:0}
-.toggle{width:16px;flex-shrink:0;text-align:center;color:var(--color-text-tertiary);font-size:10px}
-.icon{width:18px;flex-shrink:0;text-align:center;font-size:13px}
-.name{flex:1;color:var(--color-text-primary)}
-.name.dir{font-weight:500}
-.name.file{color:var(--color-text-secondary)}
-.line-badge{font-size:10px;padding:1px 6px;border-radius:3px;margin-left:4px;flex-shrink:0}
-.detail-pane{background:var(--color-background-secondary);border-radius:8px;padding:1rem 1.25rem;margin-top:1rem;border:0.5px solid var(--color-border-tertiary);min-height:120px}
-.detail-title{font-size:14px;font-weight:500;margin-bottom:8px;color:var(--color-text-primary)}
-.detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.detail-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.6;font-family:var(--font-sans)}
-.detail-code{margin-top:10px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:10px 12px;font-size:11.5px;color:var(--color-text-secondary);white-space:pre;overflow-x:auto;font-family:var(--font-mono)}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.25rem}
-.stat{background:var(--color-background-secondary);border-radius:6px;padding:10px 12px;text-align:center}
-.stat-num{font-size:22px;font-weight:500;color:var(--color-text-primary)}
-.stat-lbl{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
-.flow-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem;flex-wrap:wrap;padding:10px;background:var(--color-background-secondary);border-radius:6px}
-.flow-node{padding:4px 10px;border-radius:4px;font-weight:500;font-size:12px;white-space:nowrap}
-.flow-arrow{color:var(--color-text-tertiary)}
+
+h1 {
+    color: #4CAF88;
+}
+
+.folder {
+    margin-left: 20px;
+}
+
+.item {
+    margin: 4px 0;
+    cursor: pointer;
+}
+
+.folder > .title {
+    font-weight: bold;
+    color: #2E7D6E;
+}
+
+.file {
+    color: #6B7C85;
+}
+
+details {
+    margin-left: 15px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 500;
+}
 </style>
+</head>
 
-<div class="root">
-<h2 style="display:none" class="sr-only">NuroVed Flutter App — Production Project Structure Explorer</h2>
+<body>
 
-<div class="header">
-  <div>
-    <div style="font-size:18px;font-weight:500">NuroVed — Patient App</div>
-    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:2px">Flutter · Clean Architecture · Supabase Backend</div>
-  </div>
-  <span class="badge badge-teal">Production Grade</span>
-  <span class="badge badge-purple">Flutter</span>
-  <span class="badge badge-amber">Supabase</span>
+<h1>🌿 NuroVed Full Project Structure</h1>
+
+<details open>
+<summary>📁 nuroved_app/</summary>
+
+<div class="folder">
+
+<!-- PLATFORM -->
+<details>
+<summary>📱 Platforms</summary>
+<div class="folder">
+<div class="file">android/</div>
+<div class="file">ios/</div>
+<div class="file">web/</div>
 </div>
+</details>
 
-<div class="stat-grid">
-  <div class="stat"><div class="stat-num">15</div><div class="stat-lbl">Features</div></div>
-  <div class="stat"><div class="stat-num">9</div><div class="stat-lbl">Edge Functions</div></div>
-  <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">Data Models</div></div>
-  <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Arch Layers</div></div>
+<!-- ASSETS -->
+<details>
+<summary>📁 assets/</summary>
+<div class="folder">
+<div class="file">images/</div>
+<div class="file">icons/</div>
+<div class="file">fonts/</div>
 </div>
+</details>
 
-<div class="flow-row">
-  <span class="flow-node badge-purple" style="background:#EEEDFE;color:#3C3489">UI / Features</span>
-  <span class="flow-arrow">→</span>
-  <span class="flow-node badge-teal" style="background:#E1F5EE;color:#0F6E56">Controller</span>
-  <span class="flow-arrow">→</span>
-  <span class="flow-node badge-amber" style="background:#FAEEDA;color:#854F0B">UseCase</span>
-  <span class="flow-arrow">→</span>
-  <span class="flow-node badge-coral" style="background:#FAECE7;color:#993C1D">Repository</span>
-  <span class="flow-arrow">→</span>
-  <span class="flow-node" style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:4px;padding:4px 10px;font-weight:500;font-size:12px">API Layer</span>
-  <span class="flow-arrow">→</span>
-  <span class="flow-node badge-teal" style="background:#E1F5EE;color:#0F6E56">Supabase</span>
+<!-- SUPABASE -->
+<details>
+<summary>🗄️ supabase/</summary>
+<div class="folder">
+
+<details>
+<summary>functions/</summary>
+<div class="folder">
+<div class="file">get_patient_summary/</div>
+<div class="file">upload_report/</div>
+<div class="file">analyze_report/</div>
+<div class="file">generate_diet/</div>
+<div class="file">grant_access/</div>
+<div class="file">revoke_access/</div>
+<div class="file">add_visit/</div>
+<div class="file">get_timeline/</div>
+<div class="file">run_alert_engine/</div>
 </div>
+</details>
 
-<div class="tab-bar" id="tabs">
-  <button class="tab active" onclick="setTab('all')">All Files</button>
-  <button class="tab" onclick="setTab('features')">Features</button>
-  <button class="tab" onclick="setTab('api')">API Layer</button>
-  <button class="tab" onclick="setTab('domain')">Domain</button>
-  <button class="tab" onclick="setTab('supabase')">Supabase</button>
-  <button class="tab" onclick="setTab('core')">Core</button>
+<div class="file">migrations/</div>
+<div class="file">seed/</div>
+
 </div>
+</details>
 
-<div class="search-bar">
-  <input type="text" placeholder="Search files and directories..." id="search" oninput="filterTree(this.value)" />
+<!-- LIB -->
+<details open>
+<summary>💻 lib/</summary>
+<div class="folder">
+
+<div class="file">main.dart</div>
+
+<!-- APP -->
+<details>
+<summary>app/</summary>
+<div class="folder">
+<div class="file">app.dart</div>
+<div class="file">app_router.dart</div>
+<div class="file">routes.dart</div>
+<div class="file">app_binding.dart</div>
 </div>
+</details>
 
-<div id="tree-container" class="tree"></div>
-<div class="detail-pane" id="detail-pane">
-  <div class="detail-title" style="color:var(--color-text-secondary);font-weight:400;font-size:13px">Click any file or directory to view details</div>
+<!-- CORE -->
+<details>
+<summary>core/</summary>
+<div class="folder">
+<div class="file">constants/</div>
+<div class="file">theme/</div>
+<div class="file">utils/</div>
+<div class="file">errors/</div>
+<div class="file">network/</div>
+<div class="file">security/</div>
+<div class="file">services/</div>
+<div class="file">state/</div>
+<div class="file">config/</div>
 </div>
+</details>
+
+<!-- SHARED -->
+<details>
+<summary>shared/</summary>
+<div class="folder">
+<div class="file">widgets/</div>
+<div class="file">components/</div>
+<div class="file">extensions/</div>
+<div class="file">models/</div>
 </div>
+</details>
 
-<script>
-const INFO = {
-  'nuroved_app': {desc:'Root project directory. Contains all Flutter platform targets, assets, Supabase backend, and the main lib/ source code.', code:'flutter create nuroved_app\nflutter pub get', badges:[['Flutter App','purple'],['Multi-platform','teal']]},
-  'lib/main.dart': {desc:'App entry point. Initializes Supabase, sets up GetX bindings, and runs the root widget. Handles environment config loading.', code:`Future<void> main() async {\n  await Supabase.initialize(url: Env.supabaseUrl, anonKey: Env.anonKey);\n  runApp(const NuroVedApp());\n}`, badges:[['Entry Point','coral'],['Init','amber']]},
-  'lib/app/app.dart': {desc:'Root MaterialApp widget. Configures theme, locale, router, and initial bindings. The top-level widget tree starts here.', badges:[['Root Widget','purple']]},
-  'lib/app/app_router.dart': {desc:'GetX/Go Router navigation system. Defines all named routes, guards for authenticated routes, and transition animations.', code:`GetPage(name: Routes.home, page: () => HomeScreen(), binding: HomeBinding(), middlewares: [AuthMiddleware()])`, badges:[['Routing','teal'],['Guards','amber']]},
-  'lib/app/routes.dart': {desc:'Centralized route name constants. All navigation strings are defined here — no magic strings elsewhere in the app.', code:`class Routes {\n  static const home = '/home';\n  static const reports = '/reports';\n  static const timeline = '/timeline';\n  // ...\n}`, badges:[['Constants','gray']]},
-  'lib/app/app_binding.dart': {desc:'Global dependency injection setup via GetX. Registers all repositories, API services, and global controllers on app startup.', badges:[['DI','purple'],['GetX','teal']]},
-  'lib/core/constants/app_strings.dart': {desc:'All user-facing strings. Supports future i18n. Never hardcode UI text elsewhere.', badges:[['i18n Ready','teal']]},
-  'lib/core/constants/api_constants.dart': {desc:'API base URLs, timeout values, Supabase Edge Function names, and HTTP header keys.', code:`class ApiConstants {\n  static const baseUrl = 'https://your-project.supabase.co/functions/v1';\n  static const timeout = Duration(seconds: 30);\n}`, badges:[['Config','amber']]},
-  'lib/core/theme/app_colors.dart': {desc:'Brand color palette as static constants. Supports light/dark mode. All colors come from here — no raw hex values in widgets.', badges:[['Design System','coral']]},
-  'lib/core/theme/app_theme.dart': {desc:'ThemeData configurations for light and dark modes. Typography, input decorations, button styles, and color scheme.', badges:[['Theme','purple']]},
-  'lib/core/errors/exceptions.dart': {desc:'Custom exception classes: NetworkException, AuthException, PermissionException, ServerException. Thrown in the data layer.', code:`class AuthException extends AppException {\n  const AuthException(String message) : super(message);\n}`, badges:[['Error Handling','coral']]},
-  'lib/core/errors/failures.dart': {desc:'Sealed Failure classes (using Either pattern or sealed classes). Returned from repositories to the domain layer — no exceptions cross layer boundaries.', code:`sealed class Failure { final String message; }\nclass NetworkFailure extends Failure { ... }\nclass AuthFailure extends Failure { ... }`, badges:[['Clean Arch','purple']]},
-  'lib/core/network/api_client.dart': {desc:'Base Dio/http client configuration with default headers, base URL, interceptors attachment, and response parsing helpers.', badges:[['Networking','teal']]},
-  'lib/core/network/network_checker.dart': {desc:'Connectivity monitoring using connectivity_plus. Exposes a stream and a one-shot check. Used by API interceptors to throw NetworkFailure when offline.', badges:[['Connectivity','amber']]},
-  'lib/core/security/token_manager.dart': {desc:'Secure storage for JWT tokens using flutter_secure_storage. Handles read/write/delete of access and refresh tokens. Never stores tokens in SharedPreferences.', code:`class TokenManager {\n  Future<void> saveTokens({required String access, required String refresh}) async { ... }\n  Future<String?> getAccessToken() async { ... }\n  Future<void> clearTokens() async { ... }\n}`, badges:[['Security','coral'],['Secure Storage','amber']]},
-  'lib/core/security/permission_handler.dart': {desc:'Validates patient permissions before sensitive operations. Checks local permission cache and calls Supabase if stale.', badges:[['RBAC','purple'],['Security','coral']]},
-  'lib/core/services/supabase_service.dart': {desc:'Singleton wrapper around Supabase client. Exposes auth, storage, and realtime clients with error normalization.', badges:[['Supabase','teal']]},
-  'lib/core/services/auth_service.dart': {desc:'High-level auth operations: sign in, sign up, sign out, refresh session, on-auth-state-change stream. Used only by the auth feature.', badges:[['Auth','purple']]},
-  'lib/core/services/notification_service.dart': {desc:'Firebase/Supabase Realtime push notification setup. Handles foreground, background, and tap-to-navigate flows.', badges:[['Push','amber']]},
-  'lib/api_layer/client/api_base.dart': {desc:'Abstract base class for all API services. Defines the contract: call(), buildHeaders(), handleError(). Enforces that all API calls go through the layer.', badges:[['Abstract','gray']]},
-  'lib/api_layer/client/api_client.dart': {desc:'Concrete Dio client implementation with retry logic, exponential backoff, request/response logging (debug only), and timeout config.', code:`class ApiClient extends ApiBase {\n  Future<Response> call(String endpoint, {Map? body, String method = 'POST'}) async {\n    final headers = await buildHeaders();\n    return _dio.request(endpoint, data: body, options: Options(method: method, headers: headers));\n  }\n}`, badges:[['Dio','teal'],['Retry','amber']]},
-  'lib/api_layer/middleware/auth_interceptor.dart': {desc:'Dio interceptor that attaches Bearer token to every request, and auto-refreshes tokens on 401 responses without re-sending the user to login.', badges:[['Interceptor','purple'],['JWT','coral']]},
-  'lib/api_layer/middleware/permission_interceptor.dart': {desc:'Validates that the current user has permission for the requested resource before the request is made. Returns PermissionFailure without network round-trip if denied.', badges:[['RBAC','amber']]},
-  'lib/api_layer/services/auth_api_service.dart': {desc:'Calls auth Supabase Edge Functions: signIn, signUp, refreshToken, requestPasswordReset. Returns typed response models.', badges:[['Auth API','purple']]},
-  'lib/api_layer/services/patient_api_service.dart': {desc:'get_patient_summary Edge Function calls. Fetches full patient profile, vitals summary, and recent activity.', badges:[['Patient','teal']]},
-  'lib/api_layer/services/report_api_service.dart': {desc:'upload_report and analyze_report Edge Function calls. Handles multipart file upload, returns upload URL, triggers AI analysis.', badges:[['Reports','coral']]},
-  'lib/api_layer/services/diet_api_service.dart': {desc:'generate_diet Edge Function calls. Sends patient vitals + preferences, receives AI-generated diet plan as structured JSON.', badges:[['AI Diet','amber']]},
-  'lib/api_layer/services/permission_api_service.dart': {desc:'grant_access and revoke_access Edge Function calls. Manages doctor/family sharing tokens.', badges:[['Permissions','purple']]},
-  'lib/data/models/user_model.dart': {desc:'User data model with fromJson/toJson. Contains auth identity fields. Separate from PatientModel — a user may manage multiple patients.', code:`class UserModel {\n  final String id;\n  final String email;\n  final String? fullName;\n  factory UserModel.fromJson(Map<String, dynamic> json) => ...\n  Map<String, dynamic> toJson() => ...\n}`, badges:[['Model','gray']]},
-  'lib/data/models/patient_model.dart': {desc:'Full patient profile: demographics, blood type, allergies, chronic conditions, insurance details. Supports partial updates.', badges:[['Model','gray']]},
-  'lib/data/models/report_model.dart': {desc:'Medical report model: file metadata, upload status, AI analysis results (structured JSON), and sharing status.', badges:[['Model','gray']]},
-  'lib/data/models/medication_model.dart': {desc:'Medication with dosage, schedule, reminders, refill tracking, and interaction flags.', badges:[['Model','gray']]},
-  'lib/data/models/diet_model.dart': {desc:'AI-generated diet plan: weekly meals, calorie targets, macro breakdown, food restrictions.', badges:[['AI Model','amber']]},
-  'lib/data/repositories/auth_repository.dart': {desc:'Bridges domain ↔ API layer for auth. Converts API responses to domain entities, maps exceptions to Failures. Returns Either<Failure, Entity>.', code:`class AuthRepository {\n  Future<Either<Failure, User>> signIn(String email, String password) async {\n    try {\n      final result = await _authApi.signIn(email, password);\n      return Right(result.toEntity());\n    } on AuthException catch (e) {\n      return Left(AuthFailure(e.message));\n    }\n  }\n}`, badges:[['Repository','purple'],['Either','teal']]},
-  'lib/data/sources/remote/auth_api.dart': {desc:'Direct API source — calls AuthApiService and returns raw models. No business logic here, just data fetching.', badges:[['Remote','coral']]},
-  'lib/data/sources/local/local_storage.dart': {desc:'SharedPreferences wrapper for non-sensitive settings (theme preference, onboarding state, feature flags).', badges:[['Local','amber']]},
-  'lib/data/sources/local/cache_manager.dart': {desc:'In-memory + Hive cache layer. Caches patient summary, timeline, and diet plan locally. TTL-based invalidation. Offline-first reads.', badges:[['Cache','teal'],['Offline','purple']]},
-  'lib/domain/entities/user.dart': {desc:'Pure domain User entity — no json methods, no framework dependencies. Only business-relevant fields. The core of clean architecture.', badges:[['Domain','purple']]},
-  'lib/domain/entities/patient.dart': {desc:'Pure domain Patient entity. Represents the business concept of a patient independent of API/DB structure.', badges:[['Domain','purple']]},
-  'lib/domain/usecases/auth/sign_in.dart': {desc:'SignIn use case: validates input, calls AuthRepository, returns User or Failure. Single responsibility.', code:`class SignIn {\n  final AuthRepository _repo;\n  Future<Either<Failure, User>> call(SignInParams p) =>\n    _repo.signIn(p.email, p.password);\n}`, badges:[['UseCase','amber']]},
-  'lib/domain/usecases/reports/upload_report.dart': {desc:'Validates file type/size, calls ReportRepository.upload(), triggers AI analysis on success, returns Report entity.', badges:[['UseCase','amber']]},
-  'lib/domain/usecases/diet/generate_diet_plan.dart': {desc:'Gathers patient vitals and preferences, calls DietRepository, returns structured DietPlan entity.', badges:[['UseCase','amber'],['AI','coral']]},
-  'lib/domain/usecases/permissions/grant_access.dart': {desc:'Validates requester identity, calls PermissionRepository.grant(), stores permission token locally, returns success/failure.', badges:[['UseCase','amber'],['Security','coral']]},
-  'lib/features/auth': {desc:'Authentication feature module: sign in, sign up, OTP verification, password reset screens. Uses AuthController backed by SignIn/SignUp use cases.', badges:[['Feature','teal']]},
-  'lib/features/home': {desc:'Home dashboard: health summary cards, recent alerts, quick actions. HomeController fetches patient summary on init.', badges:[['Feature','teal']]},
-  'lib/features/reports': {desc:'Medical reports: list view, upload with file picker, AI analysis viewer with parsed results, sharing options.', badges:[['Feature','teal'],['AI','amber']]},
-  'lib/features/timeline': {desc:'Health timeline: chronological list of visits, reports, medications, and vitals. Supports filtering by category and date range.', badges:[['Feature','teal']]},
-  'lib/features/visits': {desc:'Doctor visits: add/edit/view visit records. Attach documents. Link prescriptions. Notes with voice-to-text support.', badges:[['Feature','teal']]},
-  'lib/features/routine': {desc:'Daily health routine tracker: steps, water intake, sleep. Integrates with HealthKit/Google Fit if permitted.', badges:[['Feature','teal']]},
-  'lib/features/medications': {desc:'Medication management: schedule, reminders, refill alerts, interaction checker. Powered by MedicationController.', badges:[['Feature','teal']]},
-  'lib/features/diet': {desc:'AI diet planner: generate plan from vitals, view weekly meal plan, log food intake, track macros.', badges:[['Feature','teal'],['AI','amber']]},
-  'lib/features/family': {desc:'Family member management: add dependents, switch between family profiles, manage shared access.', badges:[['Feature','teal']]},
-  'lib/features/doctor_share': {desc:'Doctor sharing: generate time-limited access QR/link, manage what data doctors can see, revoke access.', badges:[['Feature','teal'],['Security','coral']]},
-  'lib/features/permissions': {desc:'Permission management dashboard: view all active grants, expiry dates, data scope. Revoke individual or all access.', badges:[['Feature','teal'],['RBAC','purple']]},
-  'lib/features/alerts': {desc:'Health alerts engine integration: view AI-generated health alerts, mark as read, configure alert preferences.', badges:[['Feature','teal'],['AI','amber']]},
-  'lib/features/notifications': {desc:'Push notification center: all notifications, read/unread state, deep-link navigation on tap.', badges:[['Feature','teal']]},
-  'lib/features/profile': {desc:'Patient profile editor: personal details, emergency contacts, insurance, profile photo upload to Supabase Storage.', badges:[['Feature','teal']]},
-  'lib/features/premium': {desc:'Premium subscription: feature gate checks, paywall screen, subscription management, RevenueCat integration.', badges:[['Feature','teal'],['Monetization','amber']]},
-  'supabase/functions/get_patient_summary': {desc:'Edge Function: returns aggregated patient health summary. Enforces RLS — only returns data the calling user owns or has been granted access to.', code:`// index.ts\nDeno.serve(async (req) => {\n  const { patientId } = await req.json();\n  // Verify JWT + permission\n  const summary = await buildSummary(supabase, patientId);\n  return new Response(JSON.stringify(summary));\n})`, badges:[['Edge Function','teal'],['Deno','amber']]},
-  'supabase/functions/analyze_report': {desc:'Edge Function: receives uploaded file URL, calls AI model (OpenAI/Anthropic), returns structured medical data as JSON. Never runs AI calls in the client app.', badges:[['Edge Function','teal'],['AI','coral']]},
-  'supabase/functions/generate_diet': {desc:'Edge Function: takes patient vitals, conditions, preferences; calls AI to generate a 7-day meal plan with macros. Returns structured DietPlan JSON.', badges:[['Edge Function','teal'],['AI','amber']]},
-  'supabase/functions/grant_access': {desc:'Edge Function: creates a permission record in the DB with expiry, scope, and encrypted token. Validates that granter owns the patient record.', badges:[['Edge Function','teal'],['Security','coral']]},
-  'supabase/functions/run_alert_engine': {desc:'Scheduled Edge Function: runs daily, analyzes patient metrics for anomalies, creates Alert records for out-of-range values.', badges:[['Edge Function','teal'],['Scheduled','purple']]},
-  'supabase/migrations': {desc:'Database schema migration files. Version-controlled DDL. Run with supabase db push. Never modify applied migrations.', badges:[['DB Schema','gray']]},
-  'pubspec.yaml': {desc:'Flutter project manifest: dependencies, assets, fonts. Key deps: supabase_flutter, dio, get, flutter_secure_storage, hive_flutter, connectivity_plus.', code:`dependencies:\n  flutter:\n    sdk: flutter\n  supabase_flutter: ^2.0.0\n  get: ^4.6.6\n  dio: ^5.4.0\n  flutter_secure_storage: ^9.0.0\n  hive_flutter: ^1.1.0\n  connectivity_plus: ^6.0.0\n  fpdart: ^1.1.0  # Either type`, badges:[['Config','gray']]},
-};
+<!-- API -->
+<details>
+<summary>api_layer/</summary>
+<div class="folder">
+<div class="file">client/</div>
+<div class="file">endpoints/</div>
+<div class="file">middleware/</div>
+<div class="file">services/</div>
+</div>
+</details>
 
-const TREE = [
-  {id:'nuroved_app', name:'nuroved_app/', type:'dir', depth:0, tag:'root', open:true, children:[
-    {id:'android', name:'android/', type:'dir', depth:1, tag:'platform'},
-    {id:'ios', name:'ios/', type:'dir', depth:1, tag:'platform'},
-    {id:'web', name:'web/', type:'dir', depth:1, tag:'platform'},
-    {id:'assets', name:'assets/', type:'dir', depth:1, tag:'assets', open:false, children:[
-      {id:'assets/images', name:'images/', type:'dir', depth:2},
-      {id:'assets/icons', name:'icons/', type:'dir', depth:2},
-      {id:'assets/fonts', name:'fonts/', type:'dir', depth:2},
-    ]},
-    {id:'supabase', name:'supabase/', type:'dir', depth:1, tag:'supabase', open:false, children:[
-      {id:'supabase/functions', name:'functions/', type:'dir', depth:2, open:true, children:[
-        {id:'supabase/functions/get_patient_summary', name:'get_patient_summary/', type:'dir', depth:3, badge:['fn','amber']},
-        {id:'supabase/functions/upload_report', name:'upload_report/', type:'dir', depth:3, badge:['fn','amber']},
-        {id:'supabase/functions/analyze_report', name:'analyze_report/', type:'dir', depth:3, badge:['fn','coral']},
-        {id:'supabase/functions/generate_diet', name:'generate_diet/', type:'dir', depth:3, badge:['fn','coral']},
-        {id:'supabase/functions/grant_access', name:'grant_access/', type:'dir', depth:3, badge:['fn','purple']},
-        {id:'supabase/functions/revoke_access', name:'revoke_access/', type:'dir', depth:3, badge:['fn','purple']},
-        {id:'supabase/functions/add_visit', name:'add_visit/', type:'dir', depth:3, badge:['fn','teal']},
-        {id:'supabase/functions/get_timeline', name:'get_timeline/', type:'dir', depth:3, badge:['fn','teal']},
-        {id:'supabase/functions/run_alert_engine', name:'run_alert_engine/', type:'dir', depth:3, badge:['fn','coral']},
-      ]},
-      {id:'supabase/migrations', name:'migrations/', type:'dir', depth:2},
-      {id:'supabase/seed', name:'seed/', type:'dir', depth:2},
-    ]},
-    {id:'lib', name:'lib/', type:'dir', depth:1, tag:'lib', open:true, children:[
-      {id:'lib/main.dart', name:'main.dart', type:'file', depth:2, badge:['entry','coral']},
-      {id:'lib/app', name:'app/', type:'dir', depth:2, open:false, children:[
-        {id:'lib/app/app.dart', name:'app.dart', type:'file', depth:3},
-        {id:'lib/app/app_router.dart', name:'app_router.dart', type:'file', depth:3},
-        {id:'lib/app/routes.dart', name:'routes.dart', type:'file', depth:3},
-        {id:'lib/app/app_binding.dart', name:'app_binding.dart', type:'file', depth:3},
-      ]},
-      {id:'lib/core', name:'core/', type:'dir', depth:2, open:false, tag:'core', children:[
-        {id:'lib/core/constants', name:'constants/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/constants/app_strings.dart', name:'app_strings.dart', type:'file', depth:4},
-          {id:'lib/core/constants/app_assets.dart', name:'app_assets.dart', type:'file', depth:4},
-          {id:'lib/core/constants/api_constants.dart', name:'api_constants.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/theme', name:'theme/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/theme/app_colors.dart', name:'app_colors.dart', type:'file', depth:4},
-          {id:'lib/core/theme/app_text_styles.dart', name:'app_text_styles.dart', type:'file', depth:4},
-          {id:'lib/core/theme/app_theme.dart', name:'app_theme.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/utils', name:'utils/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/utils/helpers.dart', name:'helpers.dart', type:'file', depth:4},
-          {id:'lib/core/utils/validators.dart', name:'validators.dart', type:'file', depth:4},
-          {id:'lib/core/utils/date_formatter.dart', name:'date_formatter.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/errors', name:'errors/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/errors/exceptions.dart', name:'exceptions.dart', type:'file', depth:4},
-          {id:'lib/core/errors/failures.dart', name:'failures.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/network', name:'network/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/network/api_client.dart', name:'api_client.dart', type:'file', depth:4},
-          {id:'lib/core/network/network_checker.dart', name:'network_checker.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/security', name:'security/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/security/token_manager.dart', name:'token_manager.dart', type:'file', depth:4},
-          {id:'lib/core/security/permission_handler.dart', name:'permission_handler.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/core/services', name:'services/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/core/services/supabase_service.dart', name:'supabase_service.dart', type:'file', depth:4},
-          {id:'lib/core/services/auth_service.dart', name:'auth_service.dart', type:'file', depth:4},
-          {id:'lib/core/services/notification_service.dart', name:'notification_service.dart', type:'file', depth:4},
-        ]},
-      ]},
-      {id:'lib/shared', name:'shared/', type:'dir', depth:2, open:false, children:[
-        {id:'lib/shared/widgets', name:'widgets/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/shared/widgets/app_card.dart', name:'app_card.dart', type:'file', depth:4},
-          {id:'lib/shared/widgets/primary_button.dart', name:'primary_button.dart', type:'file', depth:4},
-          {id:'lib/shared/widgets/secondary_button.dart', name:'secondary_button.dart', type:'file', depth:4},
-          {id:'lib/shared/widgets/custom_text_field.dart', name:'custom_text_field.dart', type:'file', depth:4},
-          {id:'lib/shared/widgets/loading_widget.dart', name:'loading_widget.dart', type:'file', depth:4},
-          {id:'lib/shared/widgets/empty_state.dart', name:'empty_state.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/shared/components', name:'components/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/shared/components/status_badge.dart', name:'status_badge.dart', type:'file', depth:4},
-          {id:'lib/shared/components/alert_chip.dart', name:'alert_chip.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/shared/extensions', name:'extensions/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/shared/extensions/context_extensions.dart', name:'context_extensions.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/shared/models', name:'models/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/shared/models/base_model.dart', name:'base_model.dart', type:'file', depth:4},
-        ]},
-      ]},
-      {id:'lib/api_layer', name:'api_layer/', type:'dir', depth:2, open:false, tag:'api', children:[
-        {id:'lib/api_layer/client', name:'client/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/api_layer/client/api_base.dart', name:'api_base.dart', type:'file', depth:4},
-          {id:'lib/api_layer/client/api_client.dart', name:'api_client.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/api_layer/endpoints', name:'endpoints/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/api_layer/endpoints/auth_endpoints.dart', name:'auth_endpoints.dart', type:'file', depth:4},
-          {id:'lib/api_layer/endpoints/patient_endpoints.dart', name:'patient_endpoints.dart', type:'file', depth:4},
-          {id:'lib/api_layer/endpoints/report_endpoints.dart', name:'report_endpoints.dart', type:'file', depth:4},
-          {id:'lib/api_layer/endpoints/timeline_endpoints.dart', name:'timeline_endpoints.dart', type:'file', depth:4},
-          {id:'lib/api_layer/endpoints/diet_endpoints.dart', name:'diet_endpoints.dart', type:'file', depth:4},
-          {id:'lib/api_layer/endpoints/permission_endpoints.dart', name:'permission_endpoints.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/api_layer/middleware', name:'middleware/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/api_layer/middleware/auth_interceptor.dart', name:'auth_interceptor.dart', type:'file', depth:4},
-          {id:'lib/api_layer/middleware/permission_interceptor.dart', name:'permission_interceptor.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/api_layer/services', name:'services/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/api_layer/services/auth_api_service.dart', name:'auth_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/patient_api_service.dart', name:'patient_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/report_api_service.dart', name:'report_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/timeline_api_service.dart', name:'timeline_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/visit_api_service.dart', name:'visit_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/diet_api_service.dart', name:'diet_api_service.dart', type:'file', depth:4},
-          {id:'lib/api_layer/services/permission_api_service.dart', name:'permission_api_service.dart', type:'file', depth:4},
-        ]},
-      ]},
-      {id:'lib/data', name:'data/', type:'dir', depth:2, open:false, tag:'data', children:[
-        {id:'lib/data/models', name:'models/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/data/models/user_model.dart', name:'user_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/patient_model.dart', name:'patient_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/family_member_model.dart', name:'family_member_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/report_model.dart', name:'report_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/visit_model.dart', name:'visit_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/medication_model.dart', name:'medication_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/diet_model.dart', name:'diet_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/food_log_model.dart', name:'food_log_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/routine_model.dart', name:'routine_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/alert_model.dart', name:'alert_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/notification_model.dart', name:'notification_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/permission_model.dart', name:'permission_model.dart', type:'file', depth:4},
-          {id:'lib/data/models/subscription_model.dart', name:'subscription_model.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/data/repositories', name:'repositories/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/data/repositories/auth_repository.dart', name:'auth_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/patient_repository.dart', name:'patient_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/report_repository.dart', name:'report_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/timeline_repository.dart', name:'timeline_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/visit_repository.dart', name:'visit_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/medication_repository.dart', name:'medication_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/diet_repository.dart', name:'diet_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/alert_repository.dart', name:'alert_repository.dart', type:'file', depth:4},
-          {id:'lib/data/repositories/permission_repository.dart', name:'permission_repository.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/data/sources', name:'sources/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/data/sources/remote', name:'remote/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/data/sources/remote/auth_api.dart', name:'auth_api.dart', type:'file', depth:5},
-            {id:'lib/data/sources/remote/report_api.dart', name:'report_api.dart', type:'file', depth:5},
-            {id:'lib/data/sources/remote/timeline_api.dart', name:'timeline_api.dart', type:'file', depth:5},
-            {id:'lib/data/sources/remote/visit_api.dart', name:'visit_api.dart', type:'file', depth:5},
-            {id:'lib/data/sources/remote/diet_api.dart', name:'diet_api.dart', type:'file', depth:5},
-            {id:'lib/data/sources/remote/permission_api.dart', name:'permission_api.dart', type:'file', depth:5},
-          ]},
-          {id:'lib/data/sources/local', name:'local/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/data/sources/local/local_storage.dart', name:'local_storage.dart', type:'file', depth:5},
-            {id:'lib/data/sources/local/cache_manager.dart', name:'cache_manager.dart', type:'file', depth:5},
-          ]},
-        ]},
-      ]},
-      {id:'lib/domain', name:'domain/', type:'dir', depth:2, open:false, tag:'domain', children:[
-        {id:'lib/domain/entities', name:'entities/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/domain/entities/user.dart', name:'user.dart', type:'file', depth:4},
-          {id:'lib/domain/entities/patient.dart', name:'patient.dart', type:'file', depth:4},
-        ]},
-        {id:'lib/domain/usecases', name:'usecases/', type:'dir', depth:3, open:false, children:[
-          {id:'lib/domain/usecases/auth', name:'auth/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/domain/usecases/auth/sign_in.dart', name:'sign_in.dart', type:'file', depth:5},
-            {id:'lib/domain/usecases/auth/sign_up.dart', name:'sign_up.dart', type:'file', depth:5},
-            {id:'lib/domain/usecases/auth/sign_out.dart', name:'sign_out.dart', type:'file', depth:5},
-          ]},
-          {id:'lib/domain/usecases/reports', name:'reports/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/domain/usecases/reports/upload_report.dart', name:'upload_report.dart', type:'file', depth:5},
-            {id:'lib/domain/usecases/reports/get_reports.dart', name:'get_reports.dart', type:'file', depth:5},
-          ]},
-          {id:'lib/domain/usecases/timeline', name:'timeline/', type:'dir', depth:4},
-          {id:'lib/domain/usecases/visits', name:'visits/', type:'dir', depth:4},
-          {id:'lib/domain/usecases/diet', name:'diet/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/domain/usecases/diet/generate_diet_plan.dart', name:'generate_diet_plan.dart', type:'file', depth:5},
-            {id:'lib/domain/usecases/diet/log_food.dart', name:'log_food.dart', type:'file', depth:5},
-          ]},
-          {id:'lib/domain/usecases/routine', name:'routine/', type:'dir', depth:4},
-          {id:'lib/domain/usecases/alerts', name:'alerts/', type:'dir', depth:4},
-          {id:'lib/domain/usecases/permissions', name:'permissions/', type:'dir', depth:4, open:false, children:[
-            {id:'lib/domain/usecases/permissions/grant_access.dart', name:'grant_access.dart', type:'file', depth:5},
-            {id:'lib/domain/usecases/permissions/revoke_access.dart', name:'revoke_access.dart', type:'file', depth:5},
-          ]},
-          {id:'lib/domain/usecases/health', name:'health/', type:'dir', depth:4},
-          {id:'lib/domain/usecases/premium', name:'premium/', type:'dir', depth:4},
-        ]},
-      ]},
-      {id:'lib/features', name:'features/', type:'dir', depth:2, open:false, tag:'features', children:[
-        ...['auth','home','reports','timeline','visits','routine','medications','diet','family','doctor_share','permissions','alerts','notifications','profile','premium'].map(f=>({
-          id:`lib/features/${f}`, name:`${f}/`, type:'dir', depth:3, tag:'feature', open:false, badge:['screen','teal'], children:[
-            {id:`lib/features/${f}/presentation`, name:'presentation/', type:'dir', depth:4, open:false, children:[
-              {id:`lib/features/${f}/presentation/screens`, name:'screens/', type:'dir', depth:5},
-              {id:`lib/features/${f}/presentation/widgets`, name:'widgets/', type:'dir', depth:5},
-              {id:`lib/features/${f}/presentation/controller`, name:'controller/', type:'dir', depth:5},
-            ]},
-            {id:`lib/features/${f}/logic`, name:'logic/', type:'dir', depth:4},
-          ]
-        }))
-      ]},
-    ]},
-    {id:'test', name:'test/', type:'dir', depth:1},
-    {id:'pubspec.yaml', name:'pubspec.yaml', type:'file', depth:1, badge:['config','gray']},
-    {id:'README.md', name:'README.md', type:'file', depth:1},
-    {id:'.gitignore', name:'.gitignore', type:'file', depth:1},
-    {id:'analysis_options.yaml', name:'analysis_options.yaml', type:'file', depth:1},
-  ]}
-];
+<!-- DATA -->
+<details>
+<summary>data/</summary>
+<div class="folder">
+<div class="file">models/</div>
+<div class="file">repositories/</div>
+<div class="file">sources/</div>
+</div>
+</details>
 
-const COLORS = {teal:'badge-teal', purple:'badge-purple', amber:'badge-amber', coral:'badge-coral', gray:'', fn:'badge-amber', screen:'badge-teal', config:'', entry:'badge-coral'};
-const LABELS = {fn:'fn',screen:'ui',config:'cfg',entry:'entry'};
+<!-- DOMAIN -->
+<details>
+<summary>domain/</summary>
+<div class="folder">
+<div class="file">entities/</div>
+<div class="file">usecases/</div>
+</div>
+</details>
 
-let openState = {};
-let selectedId = null;
-let activeTab = 'all';
-let searchQuery = '';
+<!-- FEATURES -->
+<details open>
+<summary>features/</summary>
+<div class="folder">
 
-const TAB_ROOTS = {
-  all: null,
-  features: 'lib/features',
-  api: 'lib/api_layer',
-  domain: 'lib/domain',
-  supabase: 'supabase',
-  core: 'lib/core',
-};
+<div class="file">auth/</div>
+<div class="file">home/</div>
+<div class="file">reports/</div>
+<div class="file">timeline/</div>
+<div class="file">visits/</div>
+<div class="file">routine/</div>
+<div class="file">medications/</div>
+<div class="file">diet/</div>
+<div class="file">family/</div>
+<div class="file">doctor_share/</div>
+<div class="file">permissions/</div>
+<div class="file">alerts/</div>
+<div class="file">notifications/</div>
+<div class="file">profile/</div>
+<div class="file">premium/</div>
 
-function flattenTree(nodes, depth=0) {
-  let out = [];
-  for(const n of nodes) {
-    out.push(n);
-    if(n.children && (openState[n.id] !== false)) {
-      if(openState[n.id] === undefined) openState[n.id] = n.open !== false;
-      if(openState[n.id]) out.push(...flattenTree(n.children, depth+1));
-    }
-  }
-  return out;
-}
+</div>
+</details>
 
-function allNodes(nodes, out=[]) {
-  for(const n of nodes) { out.push(n); if(n.children) allNodes(n.children, out); }
-  return out;
-}
+</div>
+</details>
 
-function filterSearch(nodes, q) {
-  q = q.toLowerCase();
-  return allNodes(nodes).filter(n => n.name.toLowerCase().includes(q));
-}
+<!-- ROOT FILES -->
+<div class="file">pubspec.yaml</div>
+<div class="file">README.md</div>
+<div class="file">.gitignore</div>
 
-function getSubtree(nodes, targetId) {
-  for(const n of nodes) {
-    if(n.id === targetId) return [n];
-    if(n.children) {
-      const found = getSubtree(n.children, targetId);
-      if(found) return found;
-    }
-  }
-  return null;
-}
+</div>
+</details>
 
-function iconFor(n) {
-  if(n.type==='dir') return openState[n.id] ? '▾' : '▸';
-  if(n.name.endsWith('.dart')) return '🎯';
-  if(n.name.endsWith('.yaml') || n.name.endsWith('.yml')) return '⚙';
-  if(n.name.endsWith('.md')) return '📄';
-  if(n.name.endsWith('.ts')) return '🔷';
-  return '·';
-}
-
-function renderTree() {
-  const container = document.getElementById('tree-container');
-  let nodes;
-  if(searchQuery.length > 1) {
-    nodes = filterSearch(TREE, searchQuery);
-  } else {
-    const root = TAB_ROOTS[activeTab];
-    if(root) {
-      const sub = getSubtree(TREE, root);
-      nodes = sub ? flattenTree(sub) : [];
-    } else {
-      nodes = flattenTree(TREE);
-    }
-  }
-  let html = '';
-  for(const n of nodes) {
-    const indent = searchQuery.length>1 ? 0 : n.depth;
-    const isDir = n.type==='dir';
-    const isOpen = openState[n.id];
-    const sel = n.id === selectedId;
-    const badgeHtml = n.badge ? `<span class="line-badge ${COLORS[n.badge[0]]||''}">${LABELS[n.badge[0]]||n.badge[0]}</span>` : '';
-    html += `<div class="tree-row${sel?' selected':''}" data-id="${n.id}">`;
-    for(let i=0;i<Math.min(indent,6);i++) html += '<span class="indent"></span>';
-    html += `<span class="toggle">${isDir?(isOpen?'▾':'▸'):''}</span>`;
-    html += `<span class="icon">${iconFor(n)}</span>`;
-    html += `<span class="name ${isDir?'dir':'file'}">${n.name}</span>`;
-    html += badgeHtml;
-    html += '</div>';
-  }
-  container.innerHTML = html || '<div style="padding:8px;color:var(--color-text-secondary);font-size:12px">No results</div>';
-  container.querySelectorAll('.tree-row').forEach(row => {
-    row.addEventListener('click', () => handleClick(row.dataset.id));
-  });
-}
-
-function handleClick(id) {
-  const nodes = allNodes(TREE);
-  const n = nodes.find(x=>x.id===id);
-  if(!n) return;
-  if(n.type==='dir') {
-    openState[id] = !openState[id];
-  }
-  selectedId = id;
-  renderTree();
-  showDetail(id);
-}
-
-function showDetail(id) {
-  const pane = document.getElementById('detail-pane');
-  const info = INFO[id];
-  const nodes = allNodes(TREE);
-  const n = nodes.find(x=>x.id===id);
-  if(!n) return;
-  let html = `<div class="detail-title">${n.name}</div>`;
-  if(info) {
-    if(info.badges) {
-      html += '<div class="detail-meta">';
-      for(const [label, color] of info.badges) {
-        html += `<span class="badge badge-${color}">${label}</span>`;
-      }
-      html += '</div>';
-    }
-    html += `<div class="detail-desc">${info.desc}</div>`;
-    if(info.code) {
-      html += `<div class="detail-code">${info.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`;
-    }
-  } else {
-    html += `<div class="detail-desc" style="color:var(--color-text-secondary)">${n.type==='dir'?'Directory — click to expand/collapse.':'Source file — part of the NuroVed clean architecture.'}</div>`;
-  }
-  pane.innerHTML = html;
-}
-
-function setTab(tab) {
-  activeTab = tab;
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    const tabs=['all','features','api','domain','supabase','core'];
-    t.classList.toggle('active', tabs[i]===tab);
-  });
-  searchQuery='';
-  document.getElementById('search').value='';
-  renderTree();
-}
-
-function filterTree(q) {
-  searchQuery = q;
-  renderTree();
-}
-
-renderTree();
-</script>
+</body>
+</html>
