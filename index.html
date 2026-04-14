@@ -2,310 +2,289 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NuroVed Full Dev Structure</title>
+<title>NuroVed Dev Structure</title>
 
 <style>
 body {
   font-family: "Segoe UI", sans-serif;
-  background: #F7FAF9;
+  background: #F6FAF8;
   color: #1F2A2E;
   padding: 20px;
 }
 
 h1 {
-  color: #4CAF88;
+  color: #3BA37C;
 }
 
-details {
-  margin-left: 15px;
-  margin-top: 6px;
-}
-
-summary {
+button {
+  margin: 5px;
+  padding: 6px 12px;
+  border: none;
+  background: #E3F3EC;
   cursor: pointer;
-  font-weight: 600;
+  border-radius: 6px;
 }
 
-.file {
-  margin-left: 20px;
-  font-size: 14px;
-  color: #555;
+button.active {
+  background: #3BA37C;
+  color: white;
 }
 
-.desc {
-  margin-left: 30px;
-  font-size: 12px;
-  color: #777;
+.section {
+  margin-top: 20px;
 }
 
-.dev {
-  margin-left: 30px;
-  font-size: 12px;
-  color: #0F6E56;
+pre {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid #E0E0E0;
+  font-size: 13px;
 }
 
+.explain {
+  margin-top: 30px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #E0E0E0;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #2E7D6E;
+}
 </style>
 </head>
 
 <body>
 
-<h1>🌿 NuroVed Full Project Structure (Final)</h1>
-
-<details open>
-<summary>📁 nuroved_app/ (ROOT)</summary>
-
-<div class="desc">Complete Flutter + Supabase project</div>
-
-<!-- LIB -->
-<details open>
-<summary>📁 lib/ (MAIN APP CODE)</summary>
-
-<div class="file">main.dart</div>
-<div class="desc">🚀 Entry point — initialize app & Supabase</div>
-<div class="dev">Frontend: Setup app start + theme + routing</div>
-
-<!-- APP -->
-<details>
-<summary>📁 app/ (APP CONTROL)</summary>
-
-<div class="file">app.dart</div>
-<div class="desc">Root UI (MaterialApp)</div>
-
-<div class="file">app_router.dart</div>
-<div class="desc">Navigation logic</div>
-
-<div class="file">routes.dart</div>
-<div class="desc">All route names</div>
-
-<div class="file">app_binding.dart</div>
-<div class="desc">Dependency injection</div>
-
-</details>
-
-<!-- CORE -->
-<details>
-<summary>📁 core/ (GLOBAL SYSTEM)</summary>
-
-<details>
-<summary>constants/</summary>
-<div class="file">app_strings.dart</div>
-<div class="file">api_constants.dart</div>
-</details>
-
-<details>
-<summary>theme/</summary>
-<div class="file">app_colors.dart</div>
-<div class="file">app_theme.dart</div>
-</details>
-
-<details>
-<summary>services/</summary>
-<div class="file">supabase_service.dart</div>
-<div class="file">auth_service.dart</div>
-<div class="file">notification_service.dart</div>
-<div class="file">alert_engine_service.dart</div>
-<div class="desc">🔥 CORE LOGIC (alerts system)</div>
-</details>
-
-<div class="dev">Frontend: DO NOT modify logic here, only use</div>
-
-</details>
-
-<!-- API -->
-<details>
-<summary>📁 api_layer/ (BACKEND CONNECTION)</summary>
-
-<details>
-<summary>client/</summary>
-<div class="file">api_client.dart</div>
-</details>
-
-<details>
-<summary>middleware/</summary>
-<div class="file">auth_interceptor.dart</div>
-<div class="file">permission_interceptor.dart</div>
-</details>
-
-<details>
-<summary>services/</summary>
-<div class="file">auth_api_service.dart</div>
-<div class="file">report_api_service.dart</div>
-<div class="file">diet_api_service.dart</div>
-<div class="file">permission_api_service.dart</div>
-</details>
-
-<div class="dev">Frontend: Only CALL APIs, don’t change logic</div>
-
-</details>
-
-<!-- DATA -->
-<details>
-<summary>📁 data/ (DATA HANDLING)</summary>
-
-<details>
-<summary>models/</summary>
-<div class="file">user_model.dart</div>
-<div class="file">patient_model.dart</div>
-<div class="file">report_model.dart</div>
-<div class="file">diet_model.dart</div>
-</details>
-
-<details>
-<summary>repositories/</summary>
-<div class="file">auth_repository.dart</div>
-<div class="file">report_repository.dart</div>
-<div class="file">diet_repository.dart</div>
-</details>
-
-<div class="dev">Frontend: Use repositories, don’t touch raw API</div>
-
-</details>
-
-<!-- DOMAIN -->
-<details>
-<summary>📁 domain/ (BUSINESS LOGIC)</summary>
-
-<details>
-<summary>usecases/</summary>
-
-<div class="file">login.dart</div>
-<div class="file">upload_report.dart</div>
-<div class="file">generate_diet_plan.dart</div>
-<div class="file">grant_access.dart</div>
-
-</details>
-
-<div class="desc">🧠 Real app logic (pure)</div>
-
-</details>
-
-<!-- FEATURES -->
-<details open>
-<summary>📁 features/ (UI + UX)</summary>
-
-<!-- HOME -->
-<details>
-<summary>🏠 home/</summary>
-
-<div class="file">presentation/screens/home_screen.dart</div>
-<div class="file">presentation/controller/home_controller.dart</div>
-
-<div class="dev">Frontend: Build dashboard UI</div>
-
-</details>
-
-<!-- REPORTS -->
-<details>
-<summary>📄 reports/</summary>
-
-<div class="file">screens/report_list.dart</div>
-<div class="file">screens/upload_report.dart</div>
-<div class="file">controller/report_controller.dart</div>
-
-<div class="dev">Frontend: Upload + show reports</div>
-
-</details>
-
-<!-- TIMELINE -->
-<details>
-<summary>📊 timeline/</summary>
-
-<div class="file">timeline_screen.dart</div>
-<div class="file">timeline_controller.dart</div>
-
-<div class="dev">Frontend: Show history</div>
-
-</details>
-
-<!-- ROUTINE -->
-<details>
-<summary>📅 routine/</summary>
-
-<div class="file">routine_screen.dart</div>
-<div class="file">routine_controller.dart</div>
-
-<div class="desc">Track daily meals + meds</div>
-
-</details>
-
-<!-- DIET -->
-<details>
-<summary>🥗 diet/</summary>
-
-<div class="file">diet_screen.dart</div>
-<div class="file">scanner_screen.dart</div>
-<div class="file">diet_controller.dart</div>
-
-<div class="desc">AI diet + calorie tracking</div>
-
-</details>
-
-<!-- FAMILY -->
-<details>
-<summary>👨‍👩‍👧 family/</summary>
-
-<div class="file">family_screen.dart</div>
-<div class="file">family_controller.dart</div>
-
-</details>
-
-<!-- DOCTOR SHARE -->
-<details>
-<summary>🩺 doctor_share/</summary>
-
-<div class="file">share_screen.dart</div>
-<div class="file">share_controller.dart</div>
-
-<div class="desc">Grant access to doctor</div>
-
-</details>
-
-<!-- ALERTS -->
-<details>
-<summary>🚨 alerts/</summary>
-
-<div class="file">alerts_screen.dart</div>
-<div class="file">alerts_controller.dart</div>
-
-<div class="desc">Show AI alerts</div>
-
-</details>
-
-<!-- PROFILE -->
-<details>
-<summary>👤 profile/</summary>
-
-<div class="file">profile_screen.dart</div>
-<div class="file">profile_controller.dart</div>
-
-</details>
-
-<!-- PREMIUM -->
-<details>
-<summary>💰 premium/</summary>
-
-<div class="file">premium_screen.dart</div>
-<div class="file">premium_controller.dart</div>
-
-</details>
-
-</details>
-
-</details>
-
-<!-- SUPABASE -->
-<details>
-<summary>🗄️ supabase/</summary>
-
-<div class="file">functions/</div>
-<div class="desc">Backend logic (AI + permissions)</div>
-
-<div class="file">migrations/</div>
-<div class="file">seed/</div>
-
-</details>
-
-</details>
+<h1>🌿 NuroVed Full Project Structure</h1>
+
+<div>
+<button onclick="show('full')" class="active">Full</button>
+<button onclick="show('frontend')">Frontend Only</button>
+<button onclick="show('backend')">Backend Only</button>
+<button onclick="show('supabase')">Supabase</button>
+</div>
+
+<div class="section">
+
+<pre id="full">
+
+nuroved_app/
+
+├── lib/
+│   ├── main.dart
+│
+│   ├── app/
+│   │   ├── app.dart
+│   │   ├── app_router.dart
+│   │   ├── routes.dart
+│   │   ├── app_binding.dart
+│
+│   ├── core/
+│   │   ├── config/env.dart
+│   │   ├── state/app_state.dart
+│   │   ├── state/user_state.dart
+│   │   ├── state/patient_state.dart
+│   │   ├── constants/app_strings.dart
+│   │   ├── constants/api_constants.dart
+│   │   ├── theme/app_colors.dart
+│   │   ├── theme/app_text_styles.dart
+│   │   ├── theme/app_theme.dart
+│   │   ├── utils/helpers.dart
+│   │   ├── utils/validators.dart
+│   │   ├── utils/date_formatter.dart
+│   │   ├── errors/exceptions.dart
+│   │   ├── errors/failures.dart
+│   │   ├── network/api_client.dart
+│   │   ├── network/network_checker.dart
+│   │   ├── security/token_manager.dart
+│   │   ├── security/permission_handler.dart
+│   │   ├── services/supabase_service.dart
+│   │   ├── services/auth_service.dart
+│   │   ├── services/notification_service.dart
+│   │   ├── services/alert_engine_service.dart
+│
+│   ├── shared/
+│   │   ├── widgets/app_card.dart
+│   │   ├── widgets/primary_button.dart
+│   │   ├── widgets/secondary_button.dart
+│   │   ├── widgets/custom_text_field.dart
+│   │   ├── widgets/loading_widget.dart
+│   │   ├── widgets/empty_state.dart
+│   │   ├── components/status_badge.dart
+│   │   ├── components/alert_chip.dart
+│   │   ├── extensions/context_extensions.dart
+│   │   ├── models/base_model.dart
+│
+│   ├── api_layer/
+│   │   ├── client/api_base.dart
+│   │   ├── client/api_client.dart
+│   │   ├── endpoints/auth_endpoints.dart
+│   │   ├── endpoints/patient_endpoints.dart
+│   │   ├── endpoints/report_endpoints.dart
+│   │   ├── endpoints/timeline_endpoints.dart
+│   │   ├── endpoints/diet_endpoints.dart
+│   │   ├── endpoints/permission_endpoints.dart
+│   │   ├── middleware/auth_interceptor.dart
+│   │   ├── middleware/permission_interceptor.dart
+│   │   ├── services/auth_api_service.dart
+│   │   ├── services/patient_api_service.dart
+│   │   ├── services/report_api_service.dart
+│   │   ├── services/timeline_api_service.dart
+│   │   ├── services/visit_api_service.dart
+│   │   ├── services/diet_api_service.dart
+│   │   ├── services/permission_api_service.dart
+│
+│   ├── data/
+│   │   ├── models/user_model.dart
+│   │   ├── models/patient_model.dart
+│   │   ├── models/report_model.dart
+│   │   ├── models/visit_model.dart
+│   │   ├── models/medication_model.dart
+│   │   ├── models/diet_model.dart
+│   │   ├── models/food_log_model.dart
+│   │   ├── models/routine_model.dart
+│   │   ├── models/alert_model.dart
+│   │   ├── models/notification_model.dart
+│   │   ├── models/permission_model.dart
+│   │   ├── models/subscription_model.dart
+│
+│   │   ├── repositories/auth_repository.dart
+│   │   ├── repositories/patient_repository.dart
+│   │   ├── repositories/report_repository.dart
+│   │   ├── repositories/timeline_repository.dart
+│   │   ├── repositories/visit_repository.dart
+│   │   ├── repositories/medication_repository.dart
+│   │   ├── repositories/diet_repository.dart
+│   │   ├── repositories/alert_repository.dart
+│   │   ├── repositories/permission_repository.dart
+│
+│   │   ├── sources/remote/auth_api.dart
+│   │   ├── sources/remote/report_api.dart
+│   │   ├── sources/remote/timeline_api.dart
+│   │   ├── sources/remote/visit_api.dart
+│   │   ├── sources/remote/diet_api.dart
+│   │   ├── sources/remote/permission_api.dart
+│
+│   │   ├── sources/local/local_storage.dart
+│   │   ├── sources/local/cache_manager.dart
+│
+│   ├── domain/
+│   │   ├── entities/user.dart
+│   │   ├── entities/patient.dart
+│   │
+│   │   ├── usecases/auth/sign_in.dart
+│   │   ├── usecases/auth/sign_up.dart
+│   │   ├── usecases/auth/sign_out.dart
+│   │
+│   │   ├── usecases/reports/upload_report.dart
+│   │   ├── usecases/reports/get_reports.dart
+│
+│   │   ├── usecases/diet/generate_diet_plan.dart
+│   │   ├── usecases/diet/log_food.dart
+│
+│   │   ├── usecases/permissions/grant_access.dart
+│   │   ├── usecases/permissions/revoke_access.dart
+│
+│   ├── features/
+│   │   ├── home/presentation/screens/home_screen.dart
+│   │   ├── home/presentation/controller/home_controller.dart
+│
+│   │   ├── reports/presentation/screens/report_list.dart
+│   │   ├── reports/presentation/screens/upload_report.dart
+│   │   ├── reports/presentation/controller/report_controller.dart
+│
+│   │   ├── timeline/presentation/screens/timeline_screen.dart
+│   │   ├── timeline/presentation/controller/timeline_controller.dart
+│
+│   │   ├── routine/presentation/screens/routine_screen.dart
+│   │   ├── routine/presentation/controller/routine_controller.dart
+│
+│   │   ├── diet/presentation/screens/diet_screen.dart
+│   │   ├── diet/presentation/screens/scanner_screen.dart
+│   │   ├── diet/presentation/controller/diet_controller.dart
+│
+│   │   ├── family/presentation/screens/family_screen.dart
+│   │   ├── family/presentation/controller/family_controller.dart
+│
+│   │   ├── doctor_share/presentation/screens/share_screen.dart
+│   │   ├── doctor_share/presentation/controller/share_controller.dart
+│
+│   │   ├── alerts/presentation/screens/alerts_screen.dart
+│   │   ├── alerts/presentation/controller/alerts_controller.dart
+│
+│   │   ├── notifications/presentation/screens/notifications_screen.dart
+│   │   ├── notifications/presentation/controller/notifications_controller.dart
+│
+│   │   ├── profile/presentation/screens/profile_screen.dart
+│   │   ├── profile/presentation/controller/profile_controller.dart
+│
+│   │   ├── premium/presentation/screens/premium_screen.dart
+│   │   ├── premium/presentation/controller/premium_controller.dart
+
+</pre>
+
+</div>
+
+<div class="explain">
+
+<h2>🧠 EXPLANATION</h2>
+
+<p><b>lib/</b> → Main application code</p>
+<p><b>app/</b> → Controls routing, navigation, dependency injection</p>
+<p><b>core/</b> → Global system (theme, security, services, alerts engine)</p>
+<p><b>api_layer/</b> → Handles all backend communication (NO direct DB access)</p>
+<p><b>data/</b> → Converts raw API data into usable models</p>
+<p><b>domain/</b> → Business logic (usecases — real brain)</p>
+<p><b>features/</b> → UI screens + controllers (Frontend work happens here)</p>
+
+<h2>👨‍💻 FRONTEND DEVELOPER WORK</h2>
+<p>Only works inside:</p>
+<ul>
+<li>features/* (UI + controller)</li>
+<li>shared/widgets</li>
+<li>theme</li>
+</ul>
+
+<h2>🧠 BACKEND / SYSTEM WORK</h2>
+<p>Works inside:</p>
+<ul>
+<li>api_layer</li>
+<li>data</li>
+<li>domain</li>
+<li>supabase</li>
+</ul>
+
+<h2>🔄 FLOW</h2>
+<p>UI → Controller → Usecase → Repository → API → Supabase</p>
+
+</div>
+
+<script>
+function show(type) {
+  document.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+
+  const full = document.getElementById("full");
+
+  if(type === "frontend"){
+    full.textContent = "Frontend = features/, shared/, theme/";
+  }
+  else if(type === "backend"){
+    full.textContent = "Backend = api_layer/, data/, domain/";
+  }
+  else if(type === "supabase"){
+    full.textContent = "Supabase = functions/, migrations/";
+  }
+  else {
+    location.reload();
+  }
+}
+</script>
 
 </body>
 </html>
