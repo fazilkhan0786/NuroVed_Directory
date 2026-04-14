@@ -2,211 +2,309 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NuroVed Project Structure</title>
+<title>NuroVed Full Dev Structure</title>
+
 <style>
 body {
-    font-family: "Segoe UI", sans-serif;
-    background: #F7FAF9;
-    color: #1F2A2E;
-    padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background: #F7FAF9;
+  color: #1F2A2E;
+  padding: 20px;
 }
 
 h1 {
-    color: #4CAF88;
-}
-
-.folder {
-    margin-left: 20px;
-}
-
-.item {
-    margin: 4px 0;
-    cursor: pointer;
-}
-
-.folder > .title {
-    font-weight: bold;
-    color: #2E7D6E;
-}
-
-.file {
-    color: #6B7C85;
+  color: #4CAF88;
 }
 
 details {
-    margin-left: 15px;
+  margin-left: 15px;
+  margin-top: 6px;
 }
 
 summary {
-    cursor: pointer;
-    font-weight: 500;
+  cursor: pointer;
+  font-weight: 600;
 }
+
+.file {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.desc {
+  margin-left: 30px;
+  font-size: 12px;
+  color: #777;
+}
+
+.dev {
+  margin-left: 30px;
+  font-size: 12px;
+  color: #0F6E56;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🌿 NuroVed Full Project Structure</h1>
+<h1>🌿 NuroVed Full Project Structure (Final)</h1>
 
 <details open>
-<summary>📁 nuroved_app/</summary>
+<summary>📁 nuroved_app/ (ROOT)</summary>
 
-<div class="folder">
+<div class="desc">Complete Flutter + Supabase project</div>
 
-<!-- PLATFORM -->
+<!-- LIB -->
+<details open>
+<summary>📁 lib/ (MAIN APP CODE)</summary>
+
+<div class="file">main.dart</div>
+<div class="desc">🚀 Entry point — initialize app & Supabase</div>
+<div class="dev">Frontend: Setup app start + theme + routing</div>
+
+<!-- APP -->
 <details>
-<summary>📱 Platforms</summary>
-<div class="folder">
-<div class="file">android/</div>
-<div class="file">ios/</div>
-<div class="file">web/</div>
-</div>
+<summary>📁 app/ (APP CONTROL)</summary>
+
+<div class="file">app.dart</div>
+<div class="desc">Root UI (MaterialApp)</div>
+
+<div class="file">app_router.dart</div>
+<div class="desc">Navigation logic</div>
+
+<div class="file">routes.dart</div>
+<div class="desc">All route names</div>
+
+<div class="file">app_binding.dart</div>
+<div class="desc">Dependency injection</div>
+
 </details>
 
-<!-- ASSETS -->
+<!-- CORE -->
 <details>
-<summary>📁 assets/</summary>
-<div class="folder">
-<div class="file">images/</div>
-<div class="file">icons/</div>
-<div class="file">fonts/</div>
-</div>
+<summary>📁 core/ (GLOBAL SYSTEM)</summary>
+
+<details>
+<summary>constants/</summary>
+<div class="file">app_strings.dart</div>
+<div class="file">api_constants.dart</div>
+</details>
+
+<details>
+<summary>theme/</summary>
+<div class="file">app_colors.dart</div>
+<div class="file">app_theme.dart</div>
+</details>
+
+<details>
+<summary>services/</summary>
+<div class="file">supabase_service.dart</div>
+<div class="file">auth_service.dart</div>
+<div class="file">notification_service.dart</div>
+<div class="file">alert_engine_service.dart</div>
+<div class="desc">🔥 CORE LOGIC (alerts system)</div>
+</details>
+
+<div class="dev">Frontend: DO NOT modify logic here, only use</div>
+
+</details>
+
+<!-- API -->
+<details>
+<summary>📁 api_layer/ (BACKEND CONNECTION)</summary>
+
+<details>
+<summary>client/</summary>
+<div class="file">api_client.dart</div>
+</details>
+
+<details>
+<summary>middleware/</summary>
+<div class="file">auth_interceptor.dart</div>
+<div class="file">permission_interceptor.dart</div>
+</details>
+
+<details>
+<summary>services/</summary>
+<div class="file">auth_api_service.dart</div>
+<div class="file">report_api_service.dart</div>
+<div class="file">diet_api_service.dart</div>
+<div class="file">permission_api_service.dart</div>
+</details>
+
+<div class="dev">Frontend: Only CALL APIs, don’t change logic</div>
+
+</details>
+
+<!-- DATA -->
+<details>
+<summary>📁 data/ (DATA HANDLING)</summary>
+
+<details>
+<summary>models/</summary>
+<div class="file">user_model.dart</div>
+<div class="file">patient_model.dart</div>
+<div class="file">report_model.dart</div>
+<div class="file">diet_model.dart</div>
+</details>
+
+<details>
+<summary>repositories/</summary>
+<div class="file">auth_repository.dart</div>
+<div class="file">report_repository.dart</div>
+<div class="file">diet_repository.dart</div>
+</details>
+
+<div class="dev">Frontend: Use repositories, don’t touch raw API</div>
+
+</details>
+
+<!-- DOMAIN -->
+<details>
+<summary>📁 domain/ (BUSINESS LOGIC)</summary>
+
+<details>
+<summary>usecases/</summary>
+
+<div class="file">login.dart</div>
+<div class="file">upload_report.dart</div>
+<div class="file">generate_diet_plan.dart</div>
+<div class="file">grant_access.dart</div>
+
+</details>
+
+<div class="desc">🧠 Real app logic (pure)</div>
+
+</details>
+
+<!-- FEATURES -->
+<details open>
+<summary>📁 features/ (UI + UX)</summary>
+
+<!-- HOME -->
+<details>
+<summary>🏠 home/</summary>
+
+<div class="file">presentation/screens/home_screen.dart</div>
+<div class="file">presentation/controller/home_controller.dart</div>
+
+<div class="dev">Frontend: Build dashboard UI</div>
+
+</details>
+
+<!-- REPORTS -->
+<details>
+<summary>📄 reports/</summary>
+
+<div class="file">screens/report_list.dart</div>
+<div class="file">screens/upload_report.dart</div>
+<div class="file">controller/report_controller.dart</div>
+
+<div class="dev">Frontend: Upload + show reports</div>
+
+</details>
+
+<!-- TIMELINE -->
+<details>
+<summary>📊 timeline/</summary>
+
+<div class="file">timeline_screen.dart</div>
+<div class="file">timeline_controller.dart</div>
+
+<div class="dev">Frontend: Show history</div>
+
+</details>
+
+<!-- ROUTINE -->
+<details>
+<summary>📅 routine/</summary>
+
+<div class="file">routine_screen.dart</div>
+<div class="file">routine_controller.dart</div>
+
+<div class="desc">Track daily meals + meds</div>
+
+</details>
+
+<!-- DIET -->
+<details>
+<summary>🥗 diet/</summary>
+
+<div class="file">diet_screen.dart</div>
+<div class="file">scanner_screen.dart</div>
+<div class="file">diet_controller.dart</div>
+
+<div class="desc">AI diet + calorie tracking</div>
+
+</details>
+
+<!-- FAMILY -->
+<details>
+<summary>👨‍👩‍👧 family/</summary>
+
+<div class="file">family_screen.dart</div>
+<div class="file">family_controller.dart</div>
+
+</details>
+
+<!-- DOCTOR SHARE -->
+<details>
+<summary>🩺 doctor_share/</summary>
+
+<div class="file">share_screen.dart</div>
+<div class="file">share_controller.dart</div>
+
+<div class="desc">Grant access to doctor</div>
+
+</details>
+
+<!-- ALERTS -->
+<details>
+<summary>🚨 alerts/</summary>
+
+<div class="file">alerts_screen.dart</div>
+<div class="file">alerts_controller.dart</div>
+
+<div class="desc">Show AI alerts</div>
+
+</details>
+
+<!-- PROFILE -->
+<details>
+<summary>👤 profile/</summary>
+
+<div class="file">profile_screen.dart</div>
+<div class="file">profile_controller.dart</div>
+
+</details>
+
+<!-- PREMIUM -->
+<details>
+<summary>💰 premium/</summary>
+
+<div class="file">premium_screen.dart</div>
+<div class="file">premium_controller.dart</div>
+
+</details>
+
+</details>
+
 </details>
 
 <!-- SUPABASE -->
 <details>
 <summary>🗄️ supabase/</summary>
-<div class="folder">
 
-<details>
-<summary>functions/</summary>
-<div class="folder">
-<div class="file">get_patient_summary/</div>
-<div class="file">upload_report/</div>
-<div class="file">analyze_report/</div>
-<div class="file">generate_diet/</div>
-<div class="file">grant_access/</div>
-<div class="file">revoke_access/</div>
-<div class="file">add_visit/</div>
-<div class="file">get_timeline/</div>
-<div class="file">run_alert_engine/</div>
-</div>
-</details>
+<div class="file">functions/</div>
+<div class="desc">Backend logic (AI + permissions)</div>
 
 <div class="file">migrations/</div>
 <div class="file">seed/</div>
 
-</div>
 </details>
 
-<!-- LIB -->
-<details open>
-<summary>💻 lib/</summary>
-<div class="folder">
-
-<div class="file">main.dart</div>
-
-<!-- APP -->
-<details>
-<summary>app/</summary>
-<div class="folder">
-<div class="file">app.dart</div>
-<div class="file">app_router.dart</div>
-<div class="file">routes.dart</div>
-<div class="file">app_binding.dart</div>
-</div>
-</details>
-
-<!-- CORE -->
-<details>
-<summary>core/</summary>
-<div class="folder">
-<div class="file">constants/</div>
-<div class="file">theme/</div>
-<div class="file">utils/</div>
-<div class="file">errors/</div>
-<div class="file">network/</div>
-<div class="file">security/</div>
-<div class="file">services/</div>
-<div class="file">state/</div>
-<div class="file">config/</div>
-</div>
-</details>
-
-<!-- SHARED -->
-<details>
-<summary>shared/</summary>
-<div class="folder">
-<div class="file">widgets/</div>
-<div class="file">components/</div>
-<div class="file">extensions/</div>
-<div class="file">models/</div>
-</div>
-</details>
-
-<!-- API -->
-<details>
-<summary>api_layer/</summary>
-<div class="folder">
-<div class="file">client/</div>
-<div class="file">endpoints/</div>
-<div class="file">middleware/</div>
-<div class="file">services/</div>
-</div>
-</details>
-
-<!-- DATA -->
-<details>
-<summary>data/</summary>
-<div class="folder">
-<div class="file">models/</div>
-<div class="file">repositories/</div>
-<div class="file">sources/</div>
-</div>
-</details>
-
-<!-- DOMAIN -->
-<details>
-<summary>domain/</summary>
-<div class="folder">
-<div class="file">entities/</div>
-<div class="file">usecases/</div>
-</div>
-</details>
-
-<!-- FEATURES -->
-<details open>
-<summary>features/</summary>
-<div class="folder">
-
-<div class="file">auth/</div>
-<div class="file">home/</div>
-<div class="file">reports/</div>
-<div class="file">timeline/</div>
-<div class="file">visits/</div>
-<div class="file">routine/</div>
-<div class="file">medications/</div>
-<div class="file">diet/</div>
-<div class="file">family/</div>
-<div class="file">doctor_share/</div>
-<div class="file">permissions/</div>
-<div class="file">alerts/</div>
-<div class="file">notifications/</div>
-<div class="file">profile/</div>
-<div class="file">premium/</div>
-
-</div>
-</details>
-
-</div>
-</details>
-
-<!-- ROOT FILES -->
-<div class="file">pubspec.yaml</div>
-<div class="file">README.md</div>
-<div class="file">.gitignore</div>
-
-</div>
 </details>
 
 </body>
