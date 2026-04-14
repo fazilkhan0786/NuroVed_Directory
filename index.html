@@ -1,290 +1,224 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>NuroVed Dev Structure</title>
-
-<style>
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: #F6FAF8;
-  color: #1F2A2E;
-  padding: 20px;
-}
-
-h1 {
-  color: #3BA37C;
-}
-
-button {
-  margin: 5px;
-  padding: 6px 12px;
-  border: none;
-  background: #E3F3EC;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-button.active {
-  background: #3BA37C;
-  color: white;
-}
-
-.section {
-  margin-top: 20px;
-}
-
-pre {
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  overflow-x: auto;
-  border: 1px solid #E0E0E0;
-  font-size: 13px;
-}
-
-.explain {
-  margin-top: 30px;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #E0E0E0;
-}
-
-h2 {
-  margin-top: 20px;
-  color: #2E7D6E;
-}
-</style>
-</head>
-
-<body>
-
-<h1>🌿 NuroVed Full Project Structure</h1>
-
-<div>
-<button onclick="show('full')" class="active">Full</button>
-<button onclick="show('frontend')">Frontend Only</button>
-<button onclick="show('backend')">Backend Only</button>
-<button onclick="show('supabase')">Supabase</button>
-</div>
-
-<div class="section">
-
-<pre id="full">
-
-nuroved_app/
-
-├── lib/
-│   ├── main.dart
-│
-│   ├── app/
-│   │   ├── app.dart
-│   │   ├── app_router.dart
-│   │   ├── routes.dart
-│   │   ├── app_binding.dart
-│
-│   ├── core/
-│   │   ├── config/env.dart
-│   │   ├── state/app_state.dart
-│   │   ├── state/user_state.dart
-│   │   ├── state/patient_state.dart
-│   │   ├── constants/app_strings.dart
-│   │   ├── constants/api_constants.dart
-│   │   ├── theme/app_colors.dart
-│   │   ├── theme/app_text_styles.dart
-│   │   ├── theme/app_theme.dart
-│   │   ├── utils/helpers.dart
-│   │   ├── utils/validators.dart
-│   │   ├── utils/date_formatter.dart
-│   │   ├── errors/exceptions.dart
-│   │   ├── errors/failures.dart
-│   │   ├── network/api_client.dart
-│   │   ├── network/network_checker.dart
-│   │   ├── security/token_manager.dart
-│   │   ├── security/permission_handler.dart
-│   │   ├── services/supabase_service.dart
-│   │   ├── services/auth_service.dart
-│   │   ├── services/notification_service.dart
-│   │   ├── services/alert_engine_service.dart
-│
-│   ├── shared/
-│   │   ├── widgets/app_card.dart
-│   │   ├── widgets/primary_button.dart
-│   │   ├── widgets/secondary_button.dart
-│   │   ├── widgets/custom_text_field.dart
-│   │   ├── widgets/loading_widget.dart
-│   │   ├── widgets/empty_state.dart
-│   │   ├── components/status_badge.dart
-│   │   ├── components/alert_chip.dart
-│   │   ├── extensions/context_extensions.dart
-│   │   ├── models/base_model.dart
-│
-│   ├── api_layer/
-│   │   ├── client/api_base.dart
-│   │   ├── client/api_client.dart
-│   │   ├── endpoints/auth_endpoints.dart
-│   │   ├── endpoints/patient_endpoints.dart
-│   │   ├── endpoints/report_endpoints.dart
-│   │   ├── endpoints/timeline_endpoints.dart
-│   │   ├── endpoints/diet_endpoints.dart
-│   │   ├── endpoints/permission_endpoints.dart
-│   │   ├── middleware/auth_interceptor.dart
-│   │   ├── middleware/permission_interceptor.dart
-│   │   ├── services/auth_api_service.dart
-│   │   ├── services/patient_api_service.dart
-│   │   ├── services/report_api_service.dart
-│   │   ├── services/timeline_api_service.dart
-│   │   ├── services/visit_api_service.dart
-│   │   ├── services/diet_api_service.dart
-│   │   ├── services/permission_api_service.dart
-│
-│   ├── data/
-│   │   ├── models/user_model.dart
-│   │   ├── models/patient_model.dart
-│   │   ├── models/report_model.dart
-│   │   ├── models/visit_model.dart
-│   │   ├── models/medication_model.dart
-│   │   ├── models/diet_model.dart
-│   │   ├── models/food_log_model.dart
-│   │   ├── models/routine_model.dart
-│   │   ├── models/alert_model.dart
-│   │   ├── models/notification_model.dart
-│   │   ├── models/permission_model.dart
-│   │   ├── models/subscription_model.dart
-│
-│   │   ├── repositories/auth_repository.dart
-│   │   ├── repositories/patient_repository.dart
-│   │   ├── repositories/report_repository.dart
-│   │   ├── repositories/timeline_repository.dart
-│   │   ├── repositories/visit_repository.dart
-│   │   ├── repositories/medication_repository.dart
-│   │   ├── repositories/diet_repository.dart
-│   │   ├── repositories/alert_repository.dart
-│   │   ├── repositories/permission_repository.dart
-│
-│   │   ├── sources/remote/auth_api.dart
-│   │   ├── sources/remote/report_api.dart
-│   │   ├── sources/remote/timeline_api.dart
-│   │   ├── sources/remote/visit_api.dart
-│   │   ├── sources/remote/diet_api.dart
-│   │   ├── sources/remote/permission_api.dart
-│
-│   │   ├── sources/local/local_storage.dart
-│   │   ├── sources/local/cache_manager.dart
-│
-│   ├── domain/
-│   │   ├── entities/user.dart
-│   │   ├── entities/patient.dart
-│   │
-│   │   ├── usecases/auth/sign_in.dart
-│   │   ├── usecases/auth/sign_up.dart
-│   │   ├── usecases/auth/sign_out.dart
-│   │
-│   │   ├── usecases/reports/upload_report.dart
-│   │   ├── usecases/reports/get_reports.dart
-│
-│   │   ├── usecases/diet/generate_diet_plan.dart
-│   │   ├── usecases/diet/log_food.dart
-│
-│   │   ├── usecases/permissions/grant_access.dart
-│   │   ├── usecases/permissions/revoke_access.dart
-│
-│   ├── features/
-│   │   ├── home/presentation/screens/home_screen.dart
-│   │   ├── home/presentation/controller/home_controller.dart
-│
-│   │   ├── reports/presentation/screens/report_list.dart
-│   │   ├── reports/presentation/screens/upload_report.dart
-│   │   ├── reports/presentation/controller/report_controller.dart
-│
-│   │   ├── timeline/presentation/screens/timeline_screen.dart
-│   │   ├── timeline/presentation/controller/timeline_controller.dart
-│
-│   │   ├── routine/presentation/screens/routine_screen.dart
-│   │   ├── routine/presentation/controller/routine_controller.dart
-│
-│   │   ├── diet/presentation/screens/diet_screen.dart
-│   │   ├── diet/presentation/screens/scanner_screen.dart
-│   │   ├── diet/presentation/controller/diet_controller.dart
-│
-│   │   ├── family/presentation/screens/family_screen.dart
-│   │   ├── family/presentation/controller/family_controller.dart
-│
-│   │   ├── doctor_share/presentation/screens/share_screen.dart
-│   │   ├── doctor_share/presentation/controller/share_controller.dart
-│
-│   │   ├── alerts/presentation/screens/alerts_screen.dart
-│   │   ├── alerts/presentation/controller/alerts_controller.dart
-│
-│   │   ├── notifications/presentation/screens/notifications_screen.dart
-│   │   ├── notifications/presentation/controller/notifications_controller.dart
-│
-│   │   ├── profile/presentation/screens/profile_screen.dart
-│   │   ├── profile/presentation/controller/profile_controller.dart
-│
-│   │   ├── premium/presentation/screens/premium_screen.dart
-│   │   ├── premium/presentation/controller/premium_controller.dart
-
-</pre>
-
-</div>
-
-<div class="explain">
-
-<h2>🧠 EXPLANATION</h2>
-
-<p><b>lib/</b> → Main application code</p>
-<p><b>app/</b> → Controls routing, navigation, dependency injection</p>
-<p><b>core/</b> → Global system (theme, security, services, alerts engine)</p>
-<p><b>api_layer/</b> → Handles all backend communication (NO direct DB access)</p>
-<p><b>data/</b> → Converts raw API data into usable models</p>
-<p><b>domain/</b> → Business logic (usecases — real brain)</p>
-<p><b>features/</b> → UI screens + controllers (Frontend work happens here)</p>
-
-<h2>👨‍💻 FRONTEND DEVELOPER WORK</h2>
-<p>Only works inside:</p>
+<li class="folder frontend">features
 <ul>
-<li>features/* (UI + controller)</li>
-<li>shared/widgets</li>
-<li>theme</li>
-</ul>
 
-<h2>🧠 BACKEND / SYSTEM WORK</h2>
-<p>Works inside:</p>
+<!-- AUTH -->
+<li class="folder frontend">auth
 <ul>
-<li>api_layer</li>
-<li>data</li>
-<li>domain</li>
-<li>supabase</li>
+<li class="folder frontend">controllers
+<ul>
+<li class="file frontend">auth_controller.dart</li>
 </ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">login_screen.dart</li>
+<li class="file frontend">signup_screen.dart</li>
+<li class="file frontend">forgot_password_screen.dart</li>
+<li class="file frontend">splash_screen.dart</li>
+</ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">auth_header.dart</li>
+<li class="file frontend">auth_form.dart</li>
+</ul>
+</li>
+</ul>
+</li>
 
-<h2>🔄 FLOW</h2>
-<p>UI → Controller → Usecase → Repository → API → Supabase</p>
+<!-- HOME -->
+<li class="folder frontend">home
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">home_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul><li class="file frontend">home_screen.dart</li></ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">greeting_section.dart</li>
+<li class="file frontend">today_health_card.dart</li>
+<li class="file frontend">quick_actions_row.dart</li>
+<li class="file frontend">parent_care_card.dart</li>
+</ul>
+</li>
+</ul>
+</li>
 
-</div>
+<!-- VAULT -->
+<li class="folder frontend">vault
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">vault_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">vault_screen.dart</li>
+<li class="file frontend">add_record_screen.dart</li>
+<li class="file frontend">record_success_screen.dart</li>
+</ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">record_card.dart</li>
+<li class="file frontend">upload_section.dart</li>
+<li class="file frontend">profile_selector.dart</li>
+</ul>
+</li>
+</ul>
+</li>
 
-<script>
-function show(type) {
-  document.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
-  event.target.classList.add("active");
+<!-- TIMELINE -->
+<li class="folder frontend">timeline
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">timeline_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">timeline_screen.dart</li>
+<li class="file frontend">add_visit_screen.dart</li>
+<li class="file frontend">visit_details_screen.dart</li>
+</ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">timeline_tile.dart</li>
+<li class="file frontend">visit_card.dart</li>
+</ul>
+</li>
+</ul>
+</li>
 
-  const full = document.getElementById("full");
+<!-- REMINDERS -->
+<li class="folder frontend">reminders
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">reminder_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">reminder_screen.dart</li>
+<li class="file frontend">add_reminder_screen.dart</li>
+<li class="file frontend">add_custom_routine_screen.dart</li>
+</ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">reminder_tile.dart</li>
+<li class="file frontend">routine_tile.dart</li>
+<li class="file frontend">time_picker_row.dart</li>
+</ul>
+</li>
+</ul>
+</li>
 
-  if(type === "frontend"){
-    full.textContent = "Frontend = features/, shared/, theme/";
-  }
-  else if(type === "backend"){
-    full.textContent = "Backend = api_layer/, data/, domain/";
-  }
-  else if(type === "supabase"){
-    full.textContent = "Supabase = functions/, migrations/";
-  }
-  else {
-    location.reload();
-  }
-}
-</script>
+<!-- DIET -->
+<li class="folder frontend">diet
+<ul>
 
-</body>
-</html>
+<li class="folder frontend">planner
+<ul>
+<li class="file frontend">diet_plan_screen.dart</li>
+<li class="file frontend">diet_controller.dart</li>
+</ul>
+</li>
+
+<li class="folder frontend">calorie
+<ul>
+<li class="file frontend">calorie_tracker_screen.dart</li>
+<li class="file frontend">calorie_controller.dart</li>
+</ul>
+</li>
+
+<li class="folder frontend">scanner
+<ul>
+<li class="file frontend">food_scanner_screen.dart</li>
+<li class="file frontend">scanner_controller.dart</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+<!-- FAMILY -->
+<li class="folder frontend">family
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">family_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">family_profile_screen.dart</li>
+<li class="file frontend">add_family_member_screen.dart</li>
+<li class="file frontend">edit_family_member_screen.dart</li>
+</ul>
+</li>
+<li class="folder frontend">widgets
+<ul>
+<li class="file frontend">family_member_tile.dart</li>
+<li class="file frontend">family_form_fields.dart</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<!-- DOCTOR SHARE -->
+<li class="folder frontend">doctor_share
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">doctor_share_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">share_access_screen.dart</li>
+<li class="file frontend">active_sessions_screen.dart</li>
+<li class="file frontend">permission_settings_screen.dart</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<!-- NOTIFICATIONS -->
+<li class="folder frontend">notifications
+<ul>
+<li class="folder frontend">screens
+<ul><li class="file frontend">notification_screen.dart</li></ul>
+</li>
+<li class="folder frontend">widgets
+<ul><li class="file frontend">notification_tile.dart</li></ul>
+</li>
+</ul>
+</li>
+
+<!-- PROFILE -->
+<li class="folder frontend">profile
+<ul>
+<li class="folder frontend">controllers
+<ul><li class="file frontend">profile_controller.dart</li></ul>
+</li>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">profile_screen.dart</li>
+<li class="file frontend">edit_profile_screen.dart</li>
+<li class="file frontend">emergency_card_screen.dart</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<!-- PREMIUM -->
+<li class="folder frontend">premium
+<ul>
+<li class="folder frontend">screens
+<ul>
+<li class="file frontend">premium_screen.dart</li>
+<li class="file frontend">purchase_screen.dart</li>
+</ul>
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
