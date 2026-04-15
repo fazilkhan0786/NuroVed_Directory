@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NuroVed Project Structure</title>
+<title>NuroVed Patient App — Professional Directory</title>
 <style>
 :root {
-  --vscode-bg: #1e1e1e;
-  --vscode-sidebar: #252526;
-  --vscode-hover: #2a2d2e;
-  --vscode-selection: #37373d;
-  --vscode-text: #cccccc;
-  --vscode-text-bright: #ffffff;
-  --vscode-folder: #e8a87c;
-  --vscode-file: #519aba;
-  --vscode-border: #333333;
-  --vscode-accent: #007acc;
-  --fe-color: #4fc3f7;
-  --be-color: #81c784;
-  --new-color: #ffd54f;
+  --vscode-bg: #0d1117;
+  --vscode-sidebar: #161b22;
+  --vscode-hover: #21262d;
+  --vscode-selection: #2ea04333;
+  --vscode-text: #c9d1d9;
+  --vscode-text-bright: #f0f6fc;
+  --vscode-folder: #e3b341;
+  --vscode-file: #58a6ff;
+  --vscode-border: #30363d;
+  --vscode-accent: #238636;
+  --fe-color: #1f6feb;
+  --be-color: #238636;
+  --header-bg: #010409;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   background-color: var(--vscode-bg);
   color: var(--vscode-text);
   display: flex;
@@ -32,10 +32,10 @@ body {
   overflow: hidden;
 }
 
-/* Sidebar / Tree Area */
+/* Sidebar Styling */
 .sidebar {
-  width: 100%;
-  max-width: 450px;
+  width: 400px;
+  min-width: 300px;
   background-color: var(--vscode-sidebar);
   border-right: 1px solid var(--vscode-border);
   display: flex;
@@ -43,41 +43,46 @@ body {
 }
 
 .header {
-  padding: 20px 24px;
+  padding: 24px;
+  background: var(--header-bg);
   border-bottom: 1px solid var(--vscode-border);
 }
 
 .header h1 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--vscode-text-bright);
   letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .header p {
   font-size: 11px;
-  color: #858585;
-  margin-top: 6px;
+  color: #8b949e;
   text-transform: uppercase;
 }
 
-/* Controls */
-.filters {
+/* Navigation Controls */
+.controls {
+  padding: 12px 16px;
+  background: var(--vscode-sidebar);
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.filter-group {
   display: flex;
   gap: 4px;
-  padding: 12px 24px;
-  background: var(--vscode-sidebar);
 }
 
 .filter-btn {
   font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 3px;
+  padding: 4px 12px;
+  border-radius: 4px;
   border: 1px solid var(--vscode-border);
   background: var(--vscode-bg);
   color: var(--vscode-text);
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
 .filter-btn.active {
@@ -86,27 +91,11 @@ body {
   border-color: transparent;
 }
 
-.filter-btn:hover:not(.active) {
-  background: var(--vscode-hover);
-}
-
-/* Legend */
-.legend {
-  display: flex;
-  gap: 15px;
-  padding: 0 24px 12px;
-  font-size: 10px;
-  border-bottom: 1px solid var(--vscode-border);
-}
-
-.legend-item { display: flex; align-items: center; gap: 6px; color: #858585; }
-.dot { width: 6px; height: 6px; border-radius: 50%; }
-
-/* The Tree */
+/* The Tree Structure */
 .tree-container {
   flex: 1;
   overflow-y: auto;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 ul { list-style: none; }
@@ -116,95 +105,79 @@ ul { list-style: none; }
 .node-row {
   display: flex;
   align-items: center;
-  padding: 4px 24px;
+  padding: 4px 16px;
   cursor: pointer;
   white-space: nowrap;
   font-size: 13px;
-  border-left: 3px solid transparent;
+  transition: background 0.1s;
 }
 
-.node-row:hover {
-  background-color: var(--vscode-hover);
-}
+.node-row:hover { background-color: var(--vscode-hover); }
 
 .node-row.selected {
   background-color: var(--vscode-selection);
-  border-left-color: var(--vscode-accent);
+  color: var(--vscode-text-bright);
 }
 
 .chevron {
   width: 16px;
-  font-size: 10px;
+  font-size: 8px;
   transition: transform 0.2s;
-  color: #858585;
-  margin-right: 4px;
+  color: #8b949e;
+  margin-right: 6px;
   display: inline-block;
   text-align: center;
 }
 
 .chevron.expanded { transform: rotate(90deg); }
 
-.icon {
-  margin-right: 8px;
-  font-size: 14px;
-  width: 18px;
-  text-align: center;
-}
-
+.icon { margin-right: 8px; font-size: 14px; }
 .folder-icon { color: var(--vscode-folder); }
 .file-icon { color: var(--vscode-file); }
-
-.label { flex: 1; }
 
 .badge {
   font-size: 9px;
   padding: 1px 5px;
-  border-radius: 2px;
-  margin-left: 8px;
-  font-weight: bold;
+  border-radius: 3px;
+  margin-left: auto;
+  font-weight: 600;
+  opacity: 0.8;
 }
 
-.badge-fe { background: #035a85; color: #b3e5fc; }
-.badge-be { background: #2e7d32; color: #c8e6c9; }
-.badge-new { background: #9e7e00; color: #fff9c4; }
+.badge-fe { border: 1px solid var(--fe-color); color: var(--fe-color); }
+.badge-be { border: 1px solid var(--be-color); color: var(--be-color); }
 
-/* Detail Panel */
-.detail-panel {
+/* Main Content Area */
+.main-content {
   flex: 1;
-  background-color: var(--vscode-bg);
   padding: 40px;
-  display: none;
-  flex-direction: column;
+  overflow-y: auto;
+  background-image: radial-gradient(var(--vscode-border) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.detail-panel.open { display: flex; }
-
-.detail-panel h3 {
-  font-size: 24px;
-  color: var(--vscode-text-bright);
-  margin-bottom: 10px;
+.doc-card {
+  max-width: 800px;
+  background: var(--vscode-sidebar);
+  border: 1px solid var(--vscode-border);
+  border-radius: 8px;
+  padding: 30px;
 }
 
-.path-text {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  color: var(--vscode-accent);
-  margin-bottom: 30px;
-}
+.doc-card h2 { color: var(--vscode-text-bright); margin-bottom: 16px; font-size: 20px; }
+.doc-card hr { border: 0; border-top: 1px solid var(--vscode-border); margin: 20px 0; }
+.doc-card p { line-height: 1.6; margin-bottom: 12px; color: #8b949e; }
+.doc-card b { color: var(--vscode-text-bright); }
 
-.desc-text {
-  font-size: 15px;
-  line-height: 1.6;
-  max-width: 600px;
-  color: #aaaaaa;
-}
-
-.tag-container { margin-top: 20px; display: flex; gap: 8px; }
-.tag {
-  background: var(--vscode-selection);
-  padding: 4px 10px;
+.path-display {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--vscode-file);
+  margin-bottom: 20px;
+  background: var(--vscode-bg);
+  padding: 8px 12px;
   border-radius: 4px;
-  font-size: 11px;
+  display: inline-block;
 }
 </style>
 </head>
@@ -213,177 +186,218 @@ ul { list-style: none; }
 <div class="sidebar">
   <div class="header">
     <h1>🌿 NUROVED PATIENT APP</h1>
-    <p>Flutter · Supabase · Clean Architecture</p>
+    <p>Architecture v2.0 • Full Directory</p>
   </div>
 
-  <div class="filters">
-    <button class="filter-btn active" onclick="setFilter('all',this)">All Files</button>
-    <button class="filter-btn" onclick="setFilter('frontend',this)">Frontend</button>
-    <button class="filter-btn" onclick="setFilter('backend',this)">Backend</button>
-    <button class="filter-btn" onclick="setFilter('new',this)">Recently Added</button>
-  </div>
-
-  <div class="legend">
-    <div class="legend-item"><div class="dot" style="background:var(--fe-color)"></div> Frontend</div>
-    <div class="legend-item"><div class="dot" style="background:var(--be-color)"></div> Backend</div>
-    <div class="legend-item"><div class="dot" style="background:var(--new-color)"></div> Modified</div>
+  <div class="controls">
+    <div class="filter-group">
+      <button class="filter-btn active" onclick="setFilter('all',this)">Full View</button>
+      <button class="filter-btn" onclick="setFilter('frontend',this)">Frontend</button>
+      <button class="filter-btn" onclick="setFilter('backend',this)">Backend</button>
+    </div>
   </div>
 
   <div class="tree-container" id="tree-root"></div>
 </div>
 
-<div class="detail-panel" id="detail-view">
-  <h3 id="d-name">Select a file</h3>
-  <div class="path-text" id="d-path">To view its documentation and role</div>
-  <div class="desc-text" id="d-desc"></div>
-  <div class="tag-container" id="d-tags"></div>
+<div class="main-content">
+  <div class="doc-card">
+    <div id="path-viewer" class="path-display">nuroved / root</div>
+    <div id="content-viewer">
+      <h2>🧠 NuroVed System Overview</h2>
+      <p><b>Architecture:</b> Clean Architecture (Highly Scalable, Modular, and Secure)</p>
+      <p>This project follows a layered architecture where each layer has a strict responsibility. This ensures scalability, security, and flexibility when integrating hospital dashboards, AI engines, and external systems.</p>
+      <hr>
+      <p><b>🔄 COMPLETE SYSTEM FLOW:</b></p>
+      <p>User Action (UI) → Controller → Usecase (Domain Logic) → Repository → API Layer → Supabase Backend → Response → UI Update</p>
+    </div>
+  </div>
 </div>
 
 <script>
-// Data remains unchanged as per request
-const TREE = [
+// The full data structure extracted from your original code
+const TREE_DATA = [
   {n:"NUROVED",t:"folder",r:"all",children:[
-    {n:"android",t:"folder",r:"all",desc:"Flutter Android platform target. Do not modify for business logic.",tags:["Platform"]},
-    {n:"ios",t:"folder",r:"all",desc:"Flutter iOS platform target. Do not modify for business logic.",tags:["Platform"]},
-    {n:"web",t:"folder",r:"all",desc:"Flutter Web target (PWA support).",tags:["Platform"]},
+    {n:"android",t:"folder",r:"all"},
+    {n:"ios",t:"folder",r:"all"},
+    {n:"web",t:"folder",r:"all"},
+    {n:"linux",t:"folder",r:"all"},
+    {n:"macos",t:"folder",r:"all"},
+    {n:"windows",t:"folder",r:"all"},
     {n:"assets",t:"folder",r:"all",children:[
-      {n:"images",t:"folder",r:"all",desc:"App illustrations, onboarding images."},
-      {n:"icons",t:"folder",r:"all",desc:"SVG/PNG icons."},
-      {n:"lottie",t:"folder",r:"all",isNew:true,desc:"Lottie animations for success states.",tags:["New"]},
+      {n:"images",t:"folder",r:"all"},
+      {n:"icons",t:"folder",r:"all"},
+      {n:"fonts",t:"folder",r:"all"}
     ]},
     {n:"supabase",t:"folder",r:"backend",children:[
       {n:"functions",t:"folder",r:"backend",children:[
-        {n:"analyze_report.ts",t:"file",r:"backend",desc:"AI-powered lab report parsing via OpenAI/Gemini."},
-        {n:"generate_diet.ts",t:"file",r:"backend",desc:"Generates personalised diet plans."},
+        {n:"analyze_report.ts",t:"file",r:"backend"},
+        {n:"generate_diet.ts",t:"file",r:"backend"},
+        {n:"scan_food.ts",t:"file",r:"backend"},
+        {n:"add_visit.ts",t:"file",r:"backend"},
+        {n:"grant_access.ts",t:"file",r:"backend"},
+        {n:"alert_engine.ts",t:"file",r:"backend"}
       ]},
-      {n:"migrations",t:"folder",r:"backend",desc:"SQL migration files for database schema."},
+      {n:"migrations",t:"folder",r:"backend"}
     ]},
     {n:"lib",t:"folder",r:"all",children:[
-      {n:"main.dart",t:"file",r:"all",desc:"App entry point. Initialises services."},
+      {n:"main.dart",t:"file",r:"all"},
+      {n:"app",t:"folder",r:"frontend",children:[
+        {n:"app.dart",t:"file",r:"frontend"},
+        {n:"app_router.dart",t:"file",r:"frontend"},
+        {n:"app_binding.dart",t:"file",r:"frontend"}
+      ]},
       {n:"core",t:"folder",r:"all",children:[
+        {n:"constants",t:"folder",r:"all",children:[
+          {n:"app_strings.dart",t:"file",r:"all"},
+          {n:"app_assets.dart",t:"file",r:"all"}
+        ]},
+        {n:"theme",t:"folder",r:"frontend",children:[
+          {n:"app_colors.dart",t:"file",r:"frontend"},
+          {n:"app_text_styles.dart",t:"file",r:"frontend"},
+          {n:"app_theme.dart",t:"file",r:"frontend"}
+        ]},
+        {n:"utils",t:"folder",r:"all",children:[
+          {n:"helpers.dart",t:"file",r:"all"},
+          {n:"validators.dart",t:"file",r:"all"}
+        ]},
         {n:"services",t:"folder",r:"backend",children:[
-            {n:"auth_service.dart",t:"file",r:"backend",desc:"Supabase Auth wrapper."},
-            {n:"notification_service.dart",t:"file",r:"backend",desc:"FCM/APNs handler."},
+          {n:"auth_service.dart",t:"file",r:"backend"},
+          {n:"supabase_service.dart",t:"file",r:"backend"},
+          {n:"notification_service.dart",t:"file",r:"backend"},
+          {n:"alert_engine_service.dart",t:"file",r:"backend"}
+        ]}
+      ]},
+      {n:"shared",t:"folder",r:"frontend",children:[
+        {n:"widgets",t:"folder",r:"frontend",children:[
+          {n:"app_card.dart",t:"file",r:"frontend"},
+          {n:"primary_button.dart",t:"file",r:"frontend"},
+          {n:"secondary_button.dart",t:"file",r:"frontend"},
+          {n:"custom_text_field.dart",t:"file",r:"frontend"},
+          {n:"section_header.dart",t:"file",r:"frontend"}
+        ]}
+      ]},
+      {n:"api_layer",t:"folder",r:"backend",children:[
+        {n:"client",t:"folder",r:"backend",children:[
+          {n:"api_base.dart",t:"file",r:"backend"},
+          {n:"api_client.dart",t:"file",r:"backend"}
+        ]},
+        {n:"endpoints",t:"folder",r:"backend",children:[
+          {n:"auth_endpoints.dart",t:"file",r:"backend"},
+          {n:"patient_endpoints.dart",t:"file",r:"backend"},
+          {n:"report_endpoints.dart",t:"file",r:"backend"}
+        ]},
+        {n:"services",t:"folder",r:"backend",children:[
+          {n:"auth_api_service.dart",t:"file",r:"backend"},
+          {n:"patient_api_service.dart",t:"file",r:"backend"}
+        ]}
+      ]},
+      {n:"data",t:"folder",r:"backend",children:[
+        {n:"models",t:"folder",r:"backend",children:[
+          {n:"user_model.dart",t:"file",r:"backend"},
+          {n:"patient_model.dart",t:"file",r:"backend"},
+          {n:"report_model.dart",t:"file",r:"backend"}
+        ]},
+        {n:"repositories",t:"folder",r:"backend",children:[
+          {n:"auth_repository.dart",t:"file",r:"backend"},
+          {n:"report_repository.dart",t:"file",r:"backend"}
+        ]}
+      ]},
+      {n:"domain",t:"folder",r:"backend",children:[
+        {n:"entities",t:"folder",r:"backend",children:[
+          {n:"user.dart",t:"file",r:"backend"},
+          {n:"report.dart",t:"file",r:"backend"}
+        ]},
+        {n:"usecases",t:"folder",r:"backend",children:[
+          {n:"auth",t:"folder",r:"backend",children:[
+            {n:"login.dart",t:"file",r:"backend"},
+            {n:"signup.dart",t:"file",r:"backend"}
+          ]},
+          {n:"reports",t:"folder",r:"backend",children:[
+            {n:"upload_report.dart",t:"file",r:"backend"}
+          ]}
         ]}
       ]},
       {n:"features",t:"folder",r:"frontend",children:[
         {n:"auth",t:"folder",r:"frontend",children:[
-            {n:"login_screen.dart",t:"file",r:"frontend",desc:"UI for user login."},
-            {n:"signup_screen.dart",t:"file",r:"frontend",desc:"UI for user registration."}
+          {n:"controllers",t:"folder",r:"frontend",children:[{n:"auth_controller.dart",t:"file",r:"frontend"}]},
+          {n:"screens",t:"folder",r:"frontend",children:[{n:"login_screen.dart",t:"file",r:"frontend"}]}
         ]},
-        {n:"nutrition",t:"folder",r:"frontend",isNew:true,children:[
-            {n:"nutrition_screen.dart",t:"file",r:"frontend",isNew:true,desc:"Daily macro and meal tracker."},
+        {n:"home",t:"folder",r:"frontend",children:[
+          {n:"screens",t:"folder",r:"frontend",children:[{n:"home_screen.dart",t:"file",r:"frontend"}]}
+        ]},
+        {n:"vault",t:"folder",r:"frontend",children:[
+          {n:"screens",t:"folder",r:"frontend",children:[{n:"vault_screen.dart",t:"file",r:"frontend"}]}
+        ]},
+        {n:"nutrition",t:"folder",r:"frontend",children:[
+          {n:"screens",t:"folder",r:"frontend",children:[{n:"diet_screen.dart",t:"file",r:"frontend"}]}
         ]}
-      ]}
+      ]},
+      {n:"pubspec.yaml",t:"file",r:"all"}
     ]}
   ]}
 ];
 
-// Reference for details
-const fileDetails = {};
+function createTree(data, container, depth = 0, parentPath = "") {
+  const ul = document.createElement('ul');
+  if (depth > 0) ul.className = 'children';
+  
+  data.forEach(node => {
+    const li = document.createElement('li');
+    const currentPath = parentPath + " / " + node.n;
+    
+    const row = document.createElement('div');
+    row.className = 'node-row';
+    row.style.paddingLeft = (depth * 16 + 16) + "px";
+    row.dataset.role = node.r;
 
-function createNode(node, depth = 0) {
-  const container = document.createElement('div');
-  const path = node.n; 
-
-  const row = document.createElement('div');
-  row.className = 'node-row';
-  row.style.paddingLeft = (depth * 15 + 24) + 'px';
-  row.dataset.role = node.r;
-  row.dataset.isNew = node.isNew || false;
-
-  // Chevron for folders
-  if (node.children) {
+    // Chevron
     const chev = document.createElement('span');
     chev.className = 'chevron';
-    chev.innerHTML = '▶';
+    chev.innerHTML = node.children ? '▶' : '';
     row.appendChild(chev);
-  } else {
-    const spacer = document.createElement('span');
-    spacer.className = 'chevron';
-    row.appendChild(spacer);
-  }
 
-  // Icon
-  const icon = document.createElement('span');
-  icon.className = 'icon ' + (node.t === 'folder' ? 'folder-icon' : 'file-icon');
-  icon.innerHTML = node.t === 'folder' ? '📂' : '📄';
-  row.appendChild(icon);
+    // Icon
+    const icon = document.createElement('span');
+    icon.className = 'icon ' + (node.t === 'folder' ? 'folder-icon' : 'file-icon');
+    icon.innerHTML = node.t === 'folder' ? '📁' : '📄';
+    row.appendChild(icon);
 
-  // Label
-  const label = document.createElement('span');
-  label.className = 'label';
-  label.textContent = node.n;
-  row.appendChild(label);
+    // Label
+    const label = document.createElement('span');
+    label.className = 'label';
+    label.textContent = node.n;
+    row.appendChild(label);
 
-  // Badges
-  if (node.isNew) {
-    const b = document.createElement('span');
-    b.className = 'badge badge-new';
-    b.textContent = 'NEW';
-    row.appendChild(b);
-  } else if (node.r === 'frontend') {
-    const b = document.createElement('span');
-    b.className = 'badge badge-fe';
-    b.textContent = 'FE';
-    row.appendChild(b);
-  } else if (node.r === 'backend') {
-    const b = document.createElement('span');
-    b.className = 'badge badge-be';
-    b.textContent = 'BE';
-    row.appendChild(b);
-  }
-
-  container.appendChild(row);
-
-  // Children handling
-  if (node.children) {
-    const childGroup = document.createElement('div');
-    childGroup.className = 'children';
-    node.children.forEach(child => {
-      childGroup.appendChild(createNode(child, depth + 1));
-    });
-    container.appendChild(childGroup);
-
-    row.onclick = (e) => {
-      e.stopPropagation();
-      const isOpening = !childGroup.classList.contains('open');
-      childGroup.classList.toggle('open');
-      row.querySelector('.chevron').classList.toggle('expanded', isOpening);
-      row.querySelector('.icon').innerHTML = isOpening ? '📂' : '📁';
-      selectRow(row, node, path);
-    };
-  } else {
-    row.onclick = (e) => {
-      e.stopPropagation();
-      selectRow(row, node, path);
-    };
-  }
-
-  return container;
-}
-
-function selectRow(row, node, path) {
-  document.querySelectorAll('.node-row').forEach(r => r.classList.remove('selected'));
-  row.classList.add('selected');
-
-  if (!node.children) {
-    document.getElementById('detail-view').classList.add('open');
-    document.getElementById('d-name').textContent = node.n;
-    document.getElementById('d-path').textContent = "project_root / " + node.n;
-    document.getElementById('d-desc').textContent = node.desc || "No documentation available for this file.";
-    
-    const tags = document.getElementById('d-tags');
-    tags.innerHTML = '';
-    if (node.tags) {
-      node.tags.forEach(t => {
-        const span = document.createElement('span');
-        span.className = 'tag';
-        span.textContent = t;
-        tags.appendChild(span);
-      });
+    // Role Badge
+    if (node.r !== 'all') {
+        const badge = document.createElement('span');
+        badge.className = 'badge ' + (node.r === 'frontend' ? 'badge-fe' : 'badge-be');
+        badge.textContent = node.r === 'frontend' ? 'FE' : 'BE';
+        row.appendChild(badge);
     }
-  }
+
+    row.onclick = (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.node-row').forEach(r => r.classList.remove('selected'));
+      row.classList.add('selected');
+      document.getElementById('path-viewer').textContent = currentPath;
+
+      if (node.children) {
+        const childUl = li.querySelector('.children');
+        const isOpening = !childUl.classList.contains('open');
+        childUl.classList.toggle('open');
+        chev.classList.toggle('expanded', isOpening);
+      }
+    };
+
+    li.appendChild(row);
+    if (node.children) {
+      createTree(node.children, li, depth + 1, currentPath);
+    }
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
 }
 
 function setFilter(mode, btn) {
@@ -392,18 +406,19 @@ function setFilter(mode, btn) {
 
   document.querySelectorAll('.node-row').forEach(row => {
     const role = row.dataset.role;
-    const isNew = row.dataset.isNew === 'true';
-
-    if (mode === 'all') row.parentElement.style.display = 'block';
-    else if (mode === 'frontend') row.parentElement.style.display = (role === 'frontend' || role === 'all') ? 'block' : 'none';
-    else if (mode === 'backend') row.parentElement.style.display = (role === 'backend' || role === 'all') ? 'block' : 'none';
-    else if (mode === 'new') row.parentElement.style.display = isNew ? 'block' : 'none';
+    const parentLi = row.closest('li');
+    
+    if (mode === 'all') {
+      parentLi.style.display = 'block';
+    } else {
+      const isVisible = (role === mode || role === 'all');
+      parentLi.style.display = isVisible ? 'block' : 'none';
+    }
   });
 }
 
-// Initial Build
-const root = document.getElementById('tree-root');
-TREE.forEach(node => root.appendChild(createNode(node)));
+// Build
+createTree(TREE_DATA, document.getElementById('tree-root'));
 </script>
 </body>
 </html>
